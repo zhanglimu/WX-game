@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>彩ex</title>
+	<meta name="viewport" content="width=375">
+    <meta name="viewport" content="width=414">
+	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+	<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+</head>
+<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="web_js/webgame.js"></script>
+<script type="text/javascript" src="web_js/angular.min.js"></script>
+<script type="text/javascript" src="web_js/aggift.js"></script>
+<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+<link rel="stylesheet" href="web_css/style1.css">
+
+<body ng-app="aggift">
+<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+	<div class="container">
+		<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+		<ul class="pcnav clearfix">
+			<li ng-repeat="pcnav in pcnavs.pcnavbox">
+	          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+	       </li>
+			<li><a href=""><img ng-src="{{pcnavs.src}}"></a></li>
+		</ul>
+		<p class="signin">
+			<span>
+				<a href=""><img ng-src="{{pcnavs.header}}"></a>
+				<i>56321币</i>
+				<em>|</em>
+				<a href="" ng-click="quitOut()">退出</a>
+			</span>
+		</p>
+	</div>
+</div>
+<div ng-controller="aggiftctrl as gift">
+	<main class="mtop">
+	    <header id="top">
+	     <a id="point" class="point">
+	     			<img ng-src="{{gift.src0}}">
+	     		</a>
+	        <span>{{gift.word}}</span>
+	        <a id="pointe" class="pointer">
+	        	<img ng-src="{{gift.src1}}">
+	        </a>
+	    </header>
+	</main>
+	
+	<a href="#cd-nav" class="cd-nav-trigger">
+	  <span class="cd-nav-icon"></span>
+	  <svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+	  <circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+	  </svg>
+	</a>
+	
+	<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+	  <div class="cd-navigation-wrapper">
+	    <div class="cd-half-block">
+	      <h2>
+	      	<a class="ce" ng-href="{{gift.url}}">
+	      		<img class="la" ng-src="{{gift.src}}">
+	      	</a>
+	      </h2>
+	      <nav>
+	        <ul class="cd-primary-nav">
+	          <li ng-repeat="nav in gift.navbox">
+	          	<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+	          </li>
+	        </ul>
+	      </nav>
+	    </div>
+	  </div>
+	</div>
+</div>
+    <div id="container" ng-controller="agduigiftctrl as dgift">
+        <div id="content" class="col-xs-12 col-sm-12 image">
+            <dl class="col-xs-6 col-sm-6 gift" name="gift" ng-repeat="liwu in dgift.liwus" ng-click="dgift.liwu()">
+              <dd><img ng-src="{{liwu.src}}"></dd>
+              <dt>{{liwu.text}}</dt>
+              <dt>{{liwu.dollar}}</dt>
+            </dl>
+        </div>
+    </div>
+      <!-- 兑换 -->
+                      <div id="page-wrap" ng-controller="agdgiftctrl as ugift">
+                          <div id="content-wrap">     
+                              <div id="content-left" class="demo">
+                                  <div class="overlay" id="overlaygift" style="display:none;"></div>
+                                  <div class="box2" id="boxgift" style="text-align:center;">
+                                      <a class="boxclose1" id="boxclosegift"></a>
+                                      <p>
+                                        <b class="dh">{{ugift.xushu}}</b>
+                                        <dl class="gifthover">
+                                          <dd><img ng-src="{{ugift.git}}"></dd>
+                                          <dt>{{ugift.wu}}</dt>
+                                          <dt>{{ugift.dol}}</dt>
+                                        </dl>
+                                      </p>
+                                      <p>
+                                        <a href=""><button class="left giftleft">{{ugift.xiao}}</button></a>
+                                        <a ng-href="{{ugift.href}}"><button class="right giftright">{{ugift.huan}}</button></a>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+</body>
+</html>

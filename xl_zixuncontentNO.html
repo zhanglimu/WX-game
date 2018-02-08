@@ -1,0 +1,101 @@
+<ion-view title="" style="width: 100%;">
+	<ion-nav-buttons side="right">
+		<button menu-toggle="right" style="font-size:15px;font-weight:bold;width: 100%;" class="button button-icon icon ion-navicon">联赛资料库 </button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="left">
+		<p style="font-size:15px;font-weight:bold;"><img data-ng-src="web_img/ou.jpg" />{{match.league}}</p>
+	</ion-nav-buttons>
+	<ion-content>
+				<!--<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>-->
+					<!--
+                    	作者：478214496@qq.com
+                    	时间：2016-09-19
+                    	描述：vs 比赛队伍
+                    -->
+					<div>
+						<div class="row">
+							<div class="table-c col col-100">
+								<table width="100%">
+									<tr>
+										<td style="width:39% ;" align="left">
+											<img src="{{match.homeImage}}" width="60%" />
+										</td>
+										<td></td>
+										<td style="width:39% ;" align="right">
+											<img src="{{match.awayImage}}" width="60%"/>
+										</td>
+
+									</tr>
+									<tr>
+										<td style="width:39% ;font-size:15px;font-weight:bold;" align="left">
+											{{match.homeName}}
+										</td>
+										<td style="width:22% ;font-size:12px;">{{matchDate}}</td>
+										<td style="width:39% ;font-size:15px;font-weight:bold;" align="right">
+											{{match.awayName}}
+										</td>
+
+									</tr>
+									<tr>
+										<td style="width:39% ;font-size:12px;" align="left">
+											上游球队
+										</td>
+										<td></td>
+										<td style="width:39% ;font-size:12px;" align="right">
+											中游球队
+										</td>
+
+									</tr>
+
+								</table>
+							</div>
+						</div>
+
+						<div class="item item-body" style="padding-left: 0px;">
+							<div class="tabs" style="line-height: 60px">
+								<a class="tab-item active" href="#" style="font-size:15px;">
+									情报
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									数据
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									赔率
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									盘面
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									交易
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									推荐
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									热议
+								</a>
+								<a class="tab-item" href="#" style="font-size:15px;">
+									赛况
+								</a>
+
+							</div>
+						</div>
+						
+						<div style="background:#EEEDEE;height: 100%;">
+							<div>
+								<img data-ng-src="web_img/inter.png" align="center" width="100%" />
+							</div>
+							<div align="center">掌握赛前最新情报、动态，最新预测首发、球员指数第一时间掌握</div>
+							<div align="center">价格：<span  style="text-decoration: line-through;">388金币/场</span></div>
+							<div align="center">促销：<span  style="font-size: 20px;color: #FF0000;">188金币/场</span></div>
+							<div align="center"><button class="button" style="background:#666666;color:#FFFFF0;width: 50%;">订阅</button></div>
+							<div align="center" style="color: #AEAE99;">订阅人数：123456</div><br />
+						</div>
+					</div>
+
+			</ion-content>
+		
+
+	
+
+</ion-view>

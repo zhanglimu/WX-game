@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>彩ex</title>
+		<meta name="keywords" content="彩易,竞彩,足球,竞猜足球,彩票"/>
+		<meta name="description" content="竞猜足球信息显示以及赛事投注" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--百度禁止转码-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen" />
+		<!-- Start of KF5 supportbox script -->
+		<script type="text/javascript">
+			document.write('<script src="\/\/assets-cdn.kf5.com\/supportbox\/main.js?' + (new Date).getDay() + '" id="kf5-provide-supportBox" kf5-domain="caiexex.kf5.com" charset="utf-8"><\/script>');
+		</script>
+		<!-- End of KF5 supportbox script -->
+	</head>
+	<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="web_js/webgame.js"></script>
+	<!--<script type="text/javascript" src="web_js/angular.min.js"></script>-->
+	<script src="https://cdn.bootcss.com/angular.js/1.5.10/angular.js"></script>
+	<script src="//cdn.bootcss.com/angular-md5/0.1.10/angular-md5.min.js"></script>
+	<script type="text/javascript" src="web_js/agtab.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+	<link rel="stylesheet" href="web_css/style1.css">
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/datedropper.css">
+	<!--日历-->
+
+	<body ng-app="agtab">
+		<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+			<div class="container">
+				<img class="logo" ng-src="{{pcnavs.src0}}" alt="logo图seo"/>
+				<ul class="pcnav clearfix">
+					<li ng-repeat="pcnav in pcnavs.pcnavbox">
+						<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+					</li>
+					<li>
+						<a ng-href="{{pcnavs.Sihref}}"><img ng-src="{{pcnavs.srcc}}" alt="silogo的seo"></a>
+					</li>
+				</ul>
+				<p ng-class="{{loginClass}}" id="loginInfo">
+					<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+					<p class="signin" ng-if="loginFagle==true">
+						<span>
+							<img ng-src="{{headPicUrl}}" alt="头像seo"/>
+							<i>{{playerMoney}}币</i>
+							<em>|</em>
+							<a href="" ng-click="quitOut()">退出</a>
+						</span>
+					</p>
+				</p>
+			</div>
+			<!--登录-->
+			<div class="theme-popover">
+				<div class="theme-poptit">
+					<a href="javascript:;" title="关闭" class="close" ng-click="thempClose()">×</a>
+					<h3>请用微信账号扫描</h3>
+				</div>
+				<div class="theme-popbod dform">
+					<div id="code"></div>
+				</div>
+			</div>
+		</div>
+		<div ng-controller="agtabctrl as tabqie">
+			<main class="mtop">
+				<header id="top">
+					<a id="point" class="point">
+						<img ng-src="{{::tabqie.src0}}" alt="">
+					</a>
+					<span>{{::tabqie.word}}</span>
+					<a id="pointe" class="pointer">
+						<img ng-src="{{::tabqie.src1}}" alt="icon的seo">
+					</a>
+				</header>
+			</main>
+
+			<a href="#cd-nav" class="cd-nav-trigger">
+				<span class="cd-nav-icon"></span>
+				<svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+					<circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+				</svg>
+			</a>
+
+			<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+				<div class="cd-navigation-wrapper">
+					<div class="cd-half-block">
+						<h2>
+					      	<a class="ce" ng-href="{{::tabqie.url}}">
+					      		<img class="la" ng-src="{{::tabqie.src}}">
+					      	</a>
+					     </h2>
+						<nav>
+							<ul id="close" class="cd-primary-nav">
+								<li ng-repeat="nav in tabqie.navbox">
+									<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{::nav.url}}">{{::nav.text}}</a>
+								</li>
+								<li class="qiandao">
+									<span>签到</span><br />
+									<span>{{userMoney}}</span>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<article style="margin-top: 0;">
+			<section class="scre">
+				<div class="selectdrop col-xs-12 col-sm-12" ng-cloak class="ng-cloak">
+					<ul class="partner clearfix">
+						<li><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.woqutz.didi"><img src="web_img/partner4.jpg" alt="我去彩票站" /></a><span>我去彩票站</span></li>
+						<li><a href="https://itunes.apple.com/cn/app/le-mi-cai-piao-mei-hao-shi/id1112430981?mt=8"><img src="web_img/partner2.png" alt="乐米彩票" /></a><span>乐米彩票</span></li>
+						<li><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.houcai.letoula"><img src="web_img/partner7.jpg" alt="乐透啦" /></a><span>乐透啦</span></li>
+						<!-- <li><a href="https://itunes.apple.com/CN/app/id839488437"><img src="web_img/partner3.png" alt="159彩票" /></a><span>159彩票</span></li> -->
+						<!-- <li><a href="https://itunes.apple.com/cn/app/cai-piao-bao-zheng-shi-ban/id805986217?mt=8"><img src="web_img/partner1.png" alt="彩票宝" /></a><span>彩票宝</span></li> -->
+					</ul>
+					<div ng-controller="agctrl">
+						<ul id="tab">
+							<li class="pai" ng-click="tabClick('2')" style="{{tabstylea}}">新赛事</li>
+							<p><input type="text" class="input" id="pickdate" /></p>
+							<li class="pai" ng-click="tabClick('1')" style="{{tabstyleb}}">已结束</li>
+						</ul>
+						<div id="tab_content" class="showhide">
+							<div class=" col-xs-12 col-sm-12 push" ng-repeat="ctrl in agctrlLists | orderBy:'-sort'">
+								<ul id="tabgame">
+									<li ng-click="gameClick(ctrl.isclickFree,ctrl.gameID,'1')" ng-class="{ true :'se',false:''} [ctrl.isclickFree]">自由赛</li>
+									<li ng-click="gameClick(ctrl.isclickFree,ctrl.gameID,'2')" ng-class="{ false :'se',true:''} [ctrl.isclickFree]">锦标赛</li>
+								</ul>
+								<div>
+									<div class="col-md-6">
+										<div class="bgcolor  col-xs-12 col-sm-12">
+											<p class="left c">
+												<img ng-src="{{::ctrl.imga}}" />
+												<span>{{::ctrl.team}}</span>
+											</p>
+											<p class="left cd">
+												<em class="left">{{::ctrl.score}}</em>
+												<span>vs</span>
+												<em class="right">{{::ctrl.scores}}</em>
+											</p>
+											<p class="right d">
+												<img ng-src="{{::ctrl.imgb}}" />
+												<span>{{::ctrl.teams}}</span>
+											</p>
+										</div>
+										<div>
+											<div class=" col-xs-12 col-sm-12 style" ng-show="ctrl.isclickFree==true">
+												<ul>
+													<li>
+														<span class="left">{{::ctrl.title}}<i>{{::ctrl.content}}</i></span>
+														<span class="red right">{{::ctrl.title1}}<i>{{::ctrl.content1}}</i></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title2}}<i>{{::ctrl.content2}}</i></span>
+													</li>
+													<li class="already">
+														<span>已经有<i class="red" style="font-size:22px;">{{::ctrl.content3}}</i>人参与游戏</span>
+														<span><button ng-click="toNewsDetail(ctrl.match_code)">SI资讯</button></span>
+													</li>
+													<!--<li>
+													<span>{{::ctrl.title3}}<i>{{::ctrl.content4}}</i></span>
+												</li>-->
+													<li class="last" ng-if="ctrl.buttonFree=='0'">
+														<a href=""><button class='button_gray'>比赛停售</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='1'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_gray'>已派奖</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='2'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_gray'>已取消</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='3'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_green'>去投注</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='4'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,998,ctrl.freegp_id)" class='button_sign'>去投注</button></a>
+													</li>
+												</ul>
+											</div>
+
+											<div class=" col-xs-12 col-sm-12 style" ng-show="ctrl.isclickFree==false">
+												<ul>
+													<li>
+														<span class="left">{{::ctrl.title}}<i>{{::ctrl.contenter}}</i></span>
+														<span class="red right">{{::ctrl.title1}}<i>{{::ctrl.contenter1}}</i></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title5}}<i>{{::ctrl.contenter2}}</i></span>
+														<!--<a ng-href="{{::ctrl.list}}"><button class="watch right">{{::ctrl.text}}</button></a>-->
+													</li>
+													<li class="already">
+														<span>已经有<i class="red" style="font-size:22px;">{{::ctrl.contenter3}}</i>人报名</span>
+														<span><button ng-click="toNewsDetail(ctrl.match_code)">SI资讯</button></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title3}}<i>{{::ctrl.contenter4}}</i></span>
+														<span class="yellow right">{{::ctrl.text1}}<i>{{::ctrl.contenter5}}</i></span>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='0'">
+														<button class='button_gray'>比赛停售</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='1'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_gray'>已派奖</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='2'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_gray'>已取消</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='3'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_green'>已报名</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='4'">
+														<button class="button Bombbox" ng-click="toGame(ctrl.gameID,2,998,ctrl.gpgame_id)">{{::ctrl.baoming}}</button>
+													</li>
+													<input type="hidden" id="gameIDBombbox"></input> <input type="hidden" id="gameIDgameType"></input>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--pc/view-->
+						<div id="tab_content1" class="showhide1">
+							<div class=" col-xs-12 col-sm-12 push" ng-repeat="ctrl in agctrlLists | orderBy:'-sort'">
+								<div>
+									<div class="">
+										<div class="col-md-4"></div>
+										<div class="bgcolor  col-xs-12 col-sm-12 col-md-4">
+											<p class="left c">
+												<img ng-src="{{::ctrl.imga}}" />
+												<span>{{::ctrl.team}}</span>
+											</p>
+											<p class="left cd">
+												<em class="left">{{::ctrl.score}}</em>
+												<span>vs</span>
+												<em class="right">{{::ctrl.scores}}</em>
+											</p>
+											<p class="right d">
+												<img ng-src="{{::ctrl.imgb}}" />
+												<span>{{::ctrl.teams}}</span>
+											</p>
+										</div>
+										<div class="col-md-4"></div>
+										<div>
+											<div class="col-md-6 col-xs-12 col-sm-12 style">
+												<!-- ng-show="ctrl.isclickFree==true"-->
+												<ul>
+													<li>
+														<span class="left">{{::ctrl.title}}<i>{{::ctrl.content}}</i></span>
+														<span class="red right">{{::ctrl.title1}}<i>{{::ctrl.content1}}</i></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title2}}<i>{{::ctrl.content2}}</i></span>
+													</li>
+													<li class="already">
+														<span>已经有<i class="red" style="font-size:22px;">{{::ctrl.content3}}</i>人参与游戏</span>
+														<span><button ng-click="toNewsDetail(ctrl.match_code)">SI资讯</button></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title3}}<i>{{::ctrl.contenter4}}</i></span>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='0'">
+														<a href=""><button class='button_gray'>比赛停售</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='1'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_gray'>已派奖</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='2'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_gray'>已取消</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='3'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_green'>去投注</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='4'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,998,ctrl.freegp_id)" class='button_sign'>去投注</button></a>
+													</li>
+												</ul>
+											</div>
+
+											<div class="col-md-6 col-xs-12 col-sm-12 style">
+												<!-- ng-show="ctrl.isclickFree==false"-->
+												<ul>
+													<li>
+														<span class="left">{{::ctrl.title}}<i>{{::ctrl.contenter}}</i></span>
+														<span class="red right">{{::ctrl.title1}}<i>{{::ctrl.contenter1}}</i></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title5}}<i>{{::ctrl.contenter2}}</i></span>
+													</li>
+													<li class="already">
+														<span>已经有<i class="red" style="font-size:22px;">{{::ctrl.contenter3}}</i>人报名</span>
+														<span><button ng-click="toNewsDetail(ctrl.match_code)">SI资讯</button></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title3}}<i>{{::ctrl.contenter4}}</i></span>
+														<span class="yellow right">{{::ctrl.text1}}<i>{{::ctrl.contenter5}}</i></span>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='0'">
+														<button class='button_gray'>比赛停售</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='1'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_gray'>已派奖</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='2'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_gray'>已取消</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='3'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_green'>已报名</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='4'">
+														<button class="button Bombbox" ng-click="toGame(ctrl.gameID,2,998,ctrl.gpgame_id)">{{::ctrl.baoming}}</button>
+													</li>
+													<input type="hidden" id="gameIDBombbox"></input> <input type="hidden" id="gameIDgameType"></input>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="wu">
+							<!--<p class="wusai"><img src="web_img/nodata.png" alt="" /></p>-->
+							<p>彩易科思是国内唯一一家提供彩票售后增值服务的公司。您购买彩票之后不用再漫长等待结果，不必因为对方进球而狂拍大腿。您手中的彩票不再是薄纸一张，我们给她赋予了新的生命，她的价值不仅瞬息万变，而且可以在这里随时交易兑现，或锁定收益或尽力止损，一切皆有可能，一切由您决定。</p>
+							<p>我们是业内第一家提供彩票退票回收和彩票O2O服务，彩民不仅可以发起购彩方案，而且可以在赛前，赛中，赛后进行退票变现， 让彩民可以再应对任何赛事情况变化，感受涨跌的乐趣。</p>
+							<p class="Pattern"><img src="web_img/Cartoon.png" alt="漫画SEO" /></p>
+							<p>在彩易科思，您可以随意选择自己退票的时机，我们实时给你报出退票价格。退票由彩易科思回收，风险由彩易科思来承担。</p>
+							<p>【<i>小窍门</i>】比赛过程中交易价格可能最大哦！</p>
+							<p>【注：上方各App已支持购彩后随时交易。安卓请前往<i>应用商店</i>下载。】</p>
+						</div>
+
+						<!-- 报名 -->
+						<div id="page-wrap" ng-controller="baoctrl as baom">
+							<div id="content-wrap">
+								<div id="content-left" class="demo">
+									<div class="overlay" id="overlay1" style="display:none;"></div>
+									<div class="box1" id="box1" style="text-align:center;">
+										<a class="boxclose1" ng-click="boxclose1()"></a>
+										<p class="imgbg"><img ng-src="{{::baom.src1}}" alt="报名seo"></p>
+										<p class="ni">{{::baom.jin}}</p>
+										<p class="signbutton1">
+											<a><button ng-click="toGames()">{{::baom.bao}}</button></a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+		<!-- 签到 -->
+    <div id="floatPanel">    <!--pc-->
+        <div class="ctrolPanel" style="right:40px;">
+        	<img class="pc" src="web_img/pcsign.png" alt="pc签到seo"/>
+        	<!--<span class="pc">签到</span>-->
+        </div>
+    </div>
+		<div id="page-wrap" ng-controller="hhctrl as hehe">
+			<div id="content-wrap">
+				<div id="content-left" class="demo">
+					<div class="overlay" id="web_overlay" style="display:none;"></div>
+					<div class="box1" id="web_box" style="text-align:center;">
+						<a class="boxclose1" id="web_boxclose"></a>
+						<p class="imgbg"><img ng-src="{{::hehe.src3}}" alt="签到seo"></p>
+						<p class="ni">{{::hehe.text}}</p>
+						<p class="signbutton"><button>{{::hehe.words}}</button></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="web_js/datedropper.min.js"></script>
+	<script type="text/javascript">
+		//macth日历
+		$("#pickdate").dateDropper({
+			animate: false,
+			format: 'Y-m-d',
+			maxYear: '2020'
+		});
+	</script>
+
+</html>

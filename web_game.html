@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>彩ex</title>
+	<meta name="viewport" content="width=375">
+	<meta name="viewport" content="width=414">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+	<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+</head>
+<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+<style type="text/css">
+.game button{position: absolute;top: 78%;left: 15%;right: 15%;width: 70%; height: 60px; line-height: 60px;
+ border: 1px solid #fff;border-radius: 5px;color: #fff; background: none; font-size: 25px;}
+</style>
+<script>
+//手机浏览器扫码关闭
+	function codecuo(){
+		$("#erweima").hide();
+	}
+</script>
+<body>
+    <article style="padding:0;margin:0;"class="bg_sprite">
+        <img width="100%" height="auto" src="web_img/webback.png">
+        <section>
+            <div class="game">
+                <a href="web_match.html"><button>开始游戏</button></a>
+            </div>
+			    <div class="" id="erweima">
+			    	<div class="feld"></div>
+			    	<p>
+			    		<span><img class="codecuo" onclick="codecuo()" style="border: none;"></img></span>
+			    		<span>请关注微信公众号</span>
+			    		<span>搜索“彩易科思”</span>
+			    	 	<span class="newcode"><img></img></span>
+			    		<span>请保存此二维码使用微信扫一扫关注</span>
+			    	</p>
+			    </div>
+        </section>
+    </article>
+</body>
+</html>

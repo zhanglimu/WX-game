@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>彩ex</title>
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+		<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+		<!-- Start of KF5 supportbox script -->
+		<script type="text/javascript">
+			document.write('<script src="\/\/assets-cdn.kf5.com\/supportbox\/main.js?' + (new Date).getDay() + '" id="kf5-provide-supportBox" kf5-domain="caiexex.kf5.com" charset="utf-8"><\/script>');
+		</script>
+		<!-- End of KF5 supportbox script -->
+	</head>
+	<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="web_js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="web_js/webgame.js"></script>
+	<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+	<!--<script type="text/javascript" src="web_js/angular.min.js"></script>-->
+	<script src="https://cdn.bootcss.com/angular.js/1.5.10/angular.js"></script>
+	<script type="text/javascript" src="web_js/aginformations.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+	<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+	<link rel="stylesheet" href="web_css/style1.css">
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<body ng-app="aginfor">
+		<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+			<div class="container">
+				<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+				<ul class="pcnav clearfix">
+					<li ng-repeat="pcnav in pcnavs.pcnavbox">
+			          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+			       </li>
+					<li><a ng-href="{{pcnavs.Sihref}}"><img ng-src="{{pcnavs.src}}"></a></li>
+				</ul>
+				<p ng-class="{{loginClass}}"  id="loginInfo">
+					<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+					<p class="signin" ng-if="loginFagle==true">
+						<span>
+							<!--<a href=""><img ng-src="{{headPicUrl}}"></a>-->
+							<img ng-src="{{headPicUrl}}" />
+							<i>{{playerMoney}}币</i>
+							<em>|</em>
+							<a href="" ng-click="quitOut()">退出</a>
+						</span>
+					</p>
+				</p>
+			</div>
+			<!--登录-->
+			<div class="theme-popover">
+			    <div class="theme-poptit">
+			        <a href="javascript:;" title="关闭" class="close"  ng-click="thempClose()">×</a>
+			        <h3>请用微信账号扫描</h3>
+			    </div>
+			    <div class="theme-popbod dform">
+					<div id="code"></div>
+			    </div>
+			</div>
+		</div>
+		<div ng-controller="aginforctrl as infor">
+			<main class="mtop">
+				<header id="top">
+					<a id="point" class="point">
+						<img ng-src="{{infor.src0}}">
+					</a>
+					<span>{{infor.word}}</span>
+					<a id="pointe" class="pointer" ng-href="{{infor.href}}">
+						<img class="yuan" ng-src="{{infor.src1}}">
+					</a>
+				</header>
+			</main>
+
+			<a href="#cd-nav" class="cd-nav-trigger">
+				<span class="cd-nav-icon"></span>
+				<svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+					<circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+				</svg>
+			</a>
+
+			<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+				<div class="cd-navigation-wrapper">
+					<div class="cd-half-block">
+						<h2>
+					      	<a class="ce" ng-href="{{infor.url}}">
+					      		<img class="la" ng-src="{{infor.src}}">
+					      	</a>
+					      </h2>
+						<nav>
+							<ul id="close" class="cd-primary-nav">
+								<li ng-repeat="nav in infor.navbox">
+									<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+								</li>
+								<li class="qiandao">
+									<span>签到</span><br />
+									<span>{{userMoney}}</span>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<article>
+			<section>
+				<div class="team col-xs-12 col-sm-12 col-md-6 left" ng-controller="infomctrl as infom" ng-cloak class="ng-cloak">
+					<div class="teamdiv clearfix">
+						<p class="team_img left">
+							<img ng-src="{{infom.src}}"><br />
+							<span>{{infom.text}}</span>
+						</p>
+						<p class="team_time left">
+							<!--<span class="fontbold">vs</span>-->
+							<span class="font_color">{{infom.wor}}</span>
+							<span class="font">{{infom.word}}</span>
+							<span>{{infom.wod}}</span>
+						</p>
+						<p class="team_img right">
+							<img ng-src="{{infom.src1}}"><br />
+							<span>{{infom.text1}}</span>
+						</p>
+					</div>
+					<div class="timeevenbox">
+						<div class="timemovebox">
+							<div class="timemove"></div>
+							<div class="timenodebox">
+								<div class="timenode">
+									<span class="timenodein">
+                                    <img class="littlein" ng-src="{{infom.url}}">
+                                </span>
+								</div>
+								<div class="timenode">
+									<span class="timenodezhu" ng-repeat="point in infom.pointer">
+                                    <img style={{point.perPic}} ng-src="{{point.src}}"   title="{{point.tit}}">
+                                    <img style={{point.per}} ng-src="{{point.src1}}">
+                                </span>
+									<span class="timenodeke" ng-repeat="poin in infom.poiner">
+                                    <img style={{poin.perPic}} ng-src="{{poin.src}}"   title="{{poin.tit}}">
+                                    <img style={{poin.per}} ng-src="{{poin.src1}}">
+                                </span>
+								</div>
+							</div>
+						</div>
+						<span class="count0">{{infom.ling}}</span>
+						<span class="count90">{{infom.jiu}}</span>
+					</div>
+
+				</div>
+				<div class="panel-group col-md-6 col-xs-12 left" id="accordion" ng-controller="modular as modu" ng-cloak class="ng-cloak">
+					<div class="panel panel-default">
+						<dl class="panel-heading" style="padding:5px 10px;">
+							<div class="panel-title" style="font-size:14px;">
+								<a data-toggle="collapse" data-parent="#accordion" href="/demo/bootstrap3-plugin-collapse-accordion.htm#collapseOne">
+									<dt>
+                                <span>{{modu.title}}</span>
+                                <!--<img class="refresh right" ng-src="{{modu.src}}" id="refreshOdds">-->
+                            </dt>
+								</a>
+							</div>
+						</dl>
+						<div id="collapseOne" class="panel-collapse collapse in" ng-cloak class="ng-cloak">
+							<div class="panel-body" style="padding: 0;">
+								<div class="existing col-xs-12 col-sm-12">
+									<div>
+										<ul id="tabt">
+											<li ng-click="tabtClick('HHAD')" style="{{tabstylea}}">{{modu.tab}}</li>
+											<li ng-click="tabtClick('HAD')" style="{{tabstyleb}}">{{modu.tabb}}</li>
+										</ul>
+										<div id="tab_content" ng-cloak class="ng-cloak">
+											<div>
+												<ul class="list">
+													<li ng-repeat="li in modu.ul" ng-show="showProduct=='HAD'" ng-click="initClickEffect(li.opt)">
+														<span>{{li.wo}}</span>
+														<span class="marrow">{{li.can}}</br><i>{{li.shuzi}}</i><img class="uparrow" ng-src="{{li.src}}"></span>
+														<span>{{li.wor}}</br><i>{{li.peifu}}</i></span>
+														<!--<button name="activatorkeep">{{li.but}}</button>-->
+														<button id="{{li.id}}" class="activatorkeep" ng-show="li.disabled==false" ng-click="modu.buybuy(li.opt,li.odds)">{{li.but}}</button>
+														<button id="{{li.id}}" class="activatorkeep" ng-show="li.disabled==true" style="{{li.style}}">关盘</button>
+													</li>
+												</ul>
+											</div>
+											<div>
+												<ul class="list">
+													<li ng-repeat="il in modu.ol" ng-show="showProduct=='HHAD'" ng-click="initClickEffect(il.opt)">
+														<span>{{il.wo}}</span>
+														<span class="marrow">{{il.can}}</br><i>{{il.shuzi}}</i><img class="downarrow" ng-src="{{il.src}}"></span>
+														<span>{{il.wor}}</br><i>{{il.peifu}}</i></span>
+														<button id="{{il.id}}" name="activatorkeep" ng-show="il.disabled==false" ng-click="modu.buybuy(il.opt,il.odds)">{{il.but}}</button>
+														<button id="{{il.id}}" name="activatorkeep" ng-show="il.disabled==true" style="{{il.style}}">关盘</button>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="change col-xs-12 col-sm-12">
+									<div id="main" style="height:300px;width: 350px;"></div>
+									<script type="text/javascript">
+										// 基于准备好的dom，初始化echarts实例
+										var myChart = echarts.init(document.getElementById('main'));
+
+										var xrays = new Array();
+
+										for(var int = 0; int < 91; int++) {
+											xrays[int] = int + "'";
+										}
+
+										// 指定图表的配置项和数据
+										var option = {　　　　
+											tooltip: {　　　　 
+												show: true　　
+											},
+											title: {
+												text: '即场购买价格',
+												padding:10,
+												textStyle: { 
+										            fontSize: 14,
+										            fontWeight: 'bolder',
+										        },
+											}, 
+											grid:{
+												x: 50,
+												y: 50,
+												width: '50%',
+												height: '75%'
+											},
+											xAxis: [{
+												splitLine: {show: false}, //去除网格线
+												type: 'category',
+												boundaryGap: false,
+												data: xrays
+											}],
+											yAxis: [{
+												splitLine: {show: false},
+												type: 'value',
+												axisLabel: {
+													formatter: '{value} ￥'
+												}
+											}],
+											series: [{
+												name: '购买价格',
+												type: 'line',
+												data: [0],
+												markPoint: {
+													data: [{
+														type: 'max',
+														name: '最大值'
+													}, {
+														type: 'min',
+														name: '最小值'
+													}]
+												},
+												markLine: {
+													data: [{
+														type: 'average',
+														name: '平均值'
+													}]
+												}
+											}]
+										};
+
+										// 使用刚指定的配置项和数据显示图表。
+										myChart.setOption(option, true);
+									</script>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" style="padding:5px 10px;">
+							<div class="panel-title" style="font-size:14px;">
+								<a data-toggle="collapse" data-parent="#accordion" href="/demo/bootstrap3-plugin-collapse-accordion.htm#collapseTwo">
+									<dt>
+                                <span>{{modu.title1}}</span>
+                                <!--<img class="refreshing right" ng-src="{{modu.src}}" id="refreshMoney">-->
+                            </dt>
+								</a>
+							</div>
+						</div>
+						<div id="collapseTwo"  class="panel-collapse collapse in">
+							<div class="panel-body" style="padding:0;">
+								<div class="balance col-xs-12 col-sm-12">
+									<div>
+										<b>
+                                            <span>{{modu.name}}</span>
+                                            <span class="right">{{modu.money}}</span>
+                                        </b>
+										<table class="table" border="1">
+											<tbody>
+												<tr class="first">
+													<td ng-repeat="td in modu.tr">{{td.text}}</td>
+												</tr>
+												<tr ng-repeat="tr in modu.tbody" gppid={{tr.gpp_id}}>
+													<td>{{tr.wo}}</td>
+													<td>{{tr.num}}</td>
+													<td class="farrow">{{tr.numb}}<img class="uparrow" ng-src="{{tr.src}}"></td>
+													<td>{{tr.wor}}</td>
+													<td class="last" name="activatorsell" ng-show="tr.disabled==false"><button ng-click="modu.sel(tr.gpp_id)" style="{{tr.style}}"> {{tr.buton}}</button></td>
+													<td class="last" name="activatorsell" ng-show="tr.disabled==true"><button style="{{tr.style}}"> {{tr.buton}}</button></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- 卖出 -->
+							<div id="page-wrap">
+								<div id="content-wrap">
+									<div id="content-left" class="demo">
+										<div class="overlay" id="overlaysell"></div>
+										<div class="box2" id="boxsell">
+											<a class="boxclose1" id="boxclosesell"></a>
+											<input type="hidden" id="currentSoldGppid"></input>
+											<p class="zhi1">请确认卖出！</p>
+											<p class="zhi2">{{maichu}}
+												<button ng-click='modu.refreshPrice();'>刷新</button>
+											</p>
+											<p style="padding:20px;">
+												<button class="cancelsell">取消</button>
+												<button class="suresell">确认</button>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" style="padding:5px 10px;">
+							<div class="panel-title" style="font-size:14px;">
+								<a data-toggle="collapse" data-parent="#accordion" href="/demo/bootstrap3-plugin-collapse-accordion.htm#collapseFour">
+									<dt>
+                                <span>{{modu.title3}}</span>
+                            </dt>
+								</a>
+							</div>
+						</div>
+						<div id="collapseFour" class="panel-collapse collapse in">
+							<div class="panel-body" style="padding:0;">
+								<div class="parade col-xs-12 col-sm-12" style="padding: 0;">
+									<div id="news">
+										<ul>
+											<li class="li_fist" ng-repeat="rank in modu.ranking">
+												<span class="user left"><img ng-src="{{rank.src}}"><i>{{rank.namer}}</i><img class="crown" ng-src="{{rank.srcr}}" /></span>
+												<span class="big left">{{rank.nber}}</span>
+												<span class="money left"><img ng-src="{{rank.src1}}"><br><i>{{rank.money}}</i></span>
+												<span class="money left"><img ng-src="{{rank.src2}}"><br><i>{{rank.money1}}</i></span>
+												<span class="money left"><img ng-src="{{rank.src3}}"><br><i>{{rank.money2}}</i></span>
+												<span class="money left">{{rank.word}}<br><i>{{rank.money3}}</i></span>
+											</li>
+											<li class="myself">
+												<span class="user left"><img ng-src="{{modu.srcv}}"><i>{{modu.srcr}}</i></span>
+												<span class="big left">{{modu.nber}}</span>
+												<span class="money left"><img ng-src="{{modu.srcv1}}"><br><i>{{modu.money4}}</i></span>
+												<span class="money left"><img ng-src="{{modu.srcv2}}"><br><i>{{modu.money1}}</i></span>
+												<span class="money left"><img ng-src="{{modu.srcv3}}"><br><i>{{modu.money2}}</i></span>
+												<span class="money left">{{modu.word}}<br><i>{{modu.money3}}</i></span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" style="padding:5px 10px;">
+							<div class="panel-title" style="font-size:14px;">
+								<a data-toggle="collapse" data-parent="#accordion" href="/demo/bootstrap3-plugin-collapse-accordion.htm#collapseFive">
+									<dt>
+                                <span>{{modu.title4}}</span>
+                            </dt>
+								</a>
+							</div>
+						</div>
+						<div id="collapseFive" class="panel-collapse collapse in">
+							<div class="panel-body" style="padding:0;">
+								<div class="record col-xs-12 col-sm-12">
+									<div>
+										<ul id="menu">
+											<li ng-click="meanuClick('2')" style="{{meanustylea}}">{{modu.metab}}</li>
+											<li ng-click="meanuClick('1')" style="{{meanustyleb}}">{{modu.metab1}}</li>
+										</ul>
+										<div id="menu_content">
+											<div ng-if="logType==1">
+												<table class="table" border="1">
+													<tbody>
+														<tr class="first">
+															<td ng-repeat="re in modu.record">{{re.user}}</td>
+														</tr>
+														<tr ng-repeat="da in modu.data">
+															<td>{{da.users}}</td>
+															<td>{{da.word}}</td>
+															<td>{{da.text}}</td>
+															<td>{{da.shu}}</td>
+															<td>{{da.shuzi}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div ng-if="logType==2">
+												<table class="table" border="1">
+													<tbody>
+														<tr class="first">
+															<td ng-repeat="re in modu.record">{{re.user}}</td>
+														</tr>
+														<tr ng-repeat="dat in modu.datar">
+															<td>{{dat.users1}}</td>
+															<td>{{dat.word1}}</td>
+															<td>{{dat.text1}}</td>
+															<td>{{dat.shu1}}</td>
+															<td>{{dat.shuzi1}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="jogger" ng-if="logType==2">
+
+											<a href="#" ng-if="dclass==true" ng-click="wpageNumClick('-1')">
+												< </a>
+													<a ng-if="onenummy==true" ng-click="wpageNumClick('1')">1</a>
+													<a ng-if="currdmy1==true">...</a>
+													<a href="#" style="background-color: #999">{{currnummy}}</a>
+													<a ng-if="currdmy==true">...</a>
+													<a ng-if="totalnummy1==true" ng-click="wpageNumClick(totalnummy+'')">{{totalnummy}}</a>
+													<!--<a href="#" ng-repeat="ye in modu.yema" style="{{ye.currclass}}" ng-click="wpageNumClick(ye.ye2+'')">{{ye.ye2}}</a>-->
+													<a href="#" ng-if="xclass==true" ng-click="wpageNumClick('+1')"> > </a>
+
+										</div>
+										<div class="jogger" ng-if="logType==1">
+
+											<a href="#" ng-if="dyclass==true" ng-click="apageNumClick('-1')">
+												< </a>
+													<a ng-if="onenum==true" ng-click="apageNumClick('1')">1</a>
+													<a ng-if="currd1==true">...</a>
+													<a href="#" style="background-color: #999">{{currnum}}</a>
+													<a ng-if="currd==true">...</a>
+													<a ng-if="totalnum1==true" ng-click="apageNumClick(totalnum+'')">{{totalnum}}</a>
+													<!--<a href="#" ng-repeat="ye in modu.yemas" style="{{ye.currclass}}" ng-click="apageNumClick(ye.ye2+'')">{{ye.ye2}}</a>-->
+													<a href="#" ng-if="xyclass==true" ng-click="apageNumClick('+1')"> > </a>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+
+		<!-- 买入 -->
+		<div id="page-wrap" ng-controller="maictrl as mairu">
+			<div id="content-wrap">
+				<div id="content-left" class="demo">
+					<div class="overlay" id="overlaykeep"></div>
+					<div class="box2" id="boxkeep">
+						<a class="boxclose1" id="boxclosekeep"></a>
+						<p class="zhi1">{{mairu.mai}}</p>
+						<p class="add">
+							<span class="modified" id="modified0">{{mairu.jian}}</span>
+							<span class="number">{{mairu.shu}}</span>
+							<span class="modified" id="modified1">{{mairu.jia}}</span>
+						</p>
+						<input type="hidden" id="buyopt" value=""></input>
+						<input type="hidden" id="buyOdds" value=""></input>
+
+						<p style="padding:20px;">
+							<button class="cancelkeep">{{mairu.qu}}</button>
+							<button class="surekeep">{{mairu.ding}}</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

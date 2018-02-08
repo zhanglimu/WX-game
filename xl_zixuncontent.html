@@ -1,0 +1,685 @@
+<ion-view title="" style="width: 100%;">
+	<ion-nav-buttons side="right">
+		<!--<button menu-toggle="right" style="font-size:15px;font-weight:bold;width: 100%;" class="button button-icon icon ion-navicon">联赛资料库 </button>-->
+		<button class="button button-stable" class="yuyan" style="{{yuyansty}}" ng-click="yuyanClick(1)">中文</button>
+		<button class="button button-stable" class="yuyan" style="{{yuyanstyy}}" ng-click="yuyanClick(2)">English</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="left">
+		<p class="ou"><img data-ng-src="web_img/logor.png" width="10%" />{{match.league}}</p>
+	</ion-nav-buttons>
+	<ion-content ng-show="jiantou==false">
+		<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+		<!--作者：478214496@qq.com
+                	时间：2016-09-19
+                    	描述：vs 比赛队伍-->
+		<div>
+			<div class="row">
+				<div class="table-c col col-100">
+					<table width="100%">
+						<tr class="tr">
+							<td align="left">
+								<img src="{{match.homeImage}}" width="50%" />
+							</td>
+							<td></td>
+							<td align="right">
+								<img src="{{match.awayImage}}" width="50%" />
+							</td>
+						</tr>
+						<tr class="tr">
+							<td class="trtad" align="left">
+								{{match.homeName}}
+							</td>
+							<td class="trtd">{{matchDate}}</td>
+							<td class="trtad" align="right">
+								{{match.awayName}}
+							</td>
+						</tr>
+						<!--<tr class="tr">
+							<td align="left">
+								上游球队
+							</td>
+							<td></td>
+							<td align="right">
+								中游球队
+							</td>
+						</tr>-->
+					</table>
+				</div>
+			</div>
+			<!--<div class="item item-body">
+				<div class="tabs">
+					<a class="tab-item active" href="#">
+						情报
+					</a>
+					<a class="tab-item" href="#">
+						数据
+					</a>
+					<a class="tab-item" href="#">
+						赔率
+					</a>
+					<a class="tab-item" href="#">
+						盘面
+					</a>
+					<a class="tab-item" href="#">
+						交易
+					</a>
+					<a class="tab-item" href="#">
+						推荐
+					</a>
+					<a class="tab-item" href="#">
+						热议
+					</a>
+					<a class="tab-item" href="#">
+						赛况
+					</a>
+				</div>
+			</div>-->
+			<!--<div align="right">
+				<button class="button button-stable" class="yuyan" style="{{yuyansty}}" ng-click="yuyanClick(1)">中文</button>
+				<button class="button button-stable" class="yuyan" style="{{yuyanstyy}}" ng-click="yuyanClick(2)">English</button>
+			</div>-->
+			<div class="table-a col col-100 bg">
+				<table width="100%">
+					<tr>
+						<td align="left">赛前情报</td>
+						<td class="fontSize10" align="right">数据提供商：Soccer International</td>
+					</tr>
+				</table>
+			</div>
+							<!--作者：478214496@qq.com
+				                	时间：2016-09-19
+				                    	描述：赛前情报-->
+			<div class="condition">
+				<p class="col col-100">比赛日期：{{match.matchDate}}</p>
+				<!--<p style="width:20% ;" class="fontFloat"></p>-->
+				<p>温度：{{match.weather}}</p>
+				<!--<p style="float: left;">
+					<img data-ng-src="web_img/yu.png" style="float: left;" width="80%" />
+				</p>
+				<p class="fontFloat">球场：北京鸟巢体育馆</p>
+				<p class="fontFloat">草皮：已保养</p>-->
+				<button class="fontFloat recommend" ng-click="openModal()">推荐详情</button>
+			</div>
+			<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="90%" SIZE=1>
+			<div>
+				<div class="row">
+					<div class="col col-100">
+						<p class="bold">{{match.homeName}} {{match.hwen}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-100">
+						<p class="fontSize10" ng-bind-html="match.homeSummary"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-100">
+						<p style="font-size:15px;font-weight:bold;">{{match.awayName}} {{match.awen}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-100">
+						<p class="fontSize10" ng-bind-html="match.awaySummary"></p>
+					</div>
+				</div>
+			</div>
+			<div class="table-a col col-100 bg">
+				<table width="100%">
+					<tr>
+						<td align="left">球队实力对比</td>
+						<td class="fontSize10" align="right">数据提供商：Soccer International</td>
+					</tr>
+				</table>
+			</div>
+						<!--作者：478214496@qq.com
+			                    	时间：2016-09-19
+			                        	描述：球队实力对比-->
+			<div>
+				<div class="table-a col col-100 newbg">
+					<table class="fontSize10" width="100%">
+						<tr>
+							<td align="left">{{match.homeName}}</td>
+							<td align="right">{{match.awayName}}</td>
+						</tr>
+						<tr>
+							<td align="left">{{match.teamStrengthHome}}</td>
+							<td align="right">{{match.teamStrengthAway}}</td>
+						</tr>
+						<tr>
+							<td align="left" ng-bind-html="match.hstarHtml"></td>
+							<td align="right" ng-bind-html="match.astarHtml"></td>
+						</tr>
+						<tr>
+							<td align="left">{{match.LastHome5}}</td>
+							<td align="right">{{match.LastAway5}}</td>
+						</tr>
+						<tr>
+							<td align="left" ng-bind-html="match.himghtml"></td>
+							<td align="right" ng-bind-html="match.aimghtml"></td>
+						</tr>
+						<tr>
+							<td align="left">{{match.LastHome55}}</td>
+							<td align="right">{{match.LastAway55}}</td>
+						</tr>
+						<tr>
+							<td align="left" ng-bind-html="match.himghhtml"></td>
+							<td align="right" ng-bind-html="match.aimghhtml"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="table-a col col-100 bg">
+				<table width="100%">
+					<tr>
+						<td align="left">伤停</td>
+						<td class="fontSize10" align="right">数据提供商：Soccer International</td>
+					</tr>
+				</table>
+			</div>
+			<!--作者：478214496@qq.com
+                    	时间：2016-09-19
+                        	描述：伤停-->
+			<div>
+				<!--<div class="row">
+								<div class="col  col-80">
+									<p style="font-size:15px;font-weight:bold;">{{match.homeName}}</p>
+								</div>
+								<div class="col col-80">
+									<p style="font-size:15px;font-weight:bold;">{{match.awayName}}</p>
+								</div>
+
+							</div>-->
+
+				<div class="row">
+					<div class="table-a col col-100">
+						<table class="table">
+							<tr>
+								<td>{{match.homeName}}</td>
+								<td align="right">{{match.awayName}}</td>
+							</tr>
+							<tr ng-repeat="totalsts in match.totalst">
+								<td align="right">
+									<span>{{totalsts.hname}}</span>
+									<span ng-bind-html="totalsts.himg"></span>
+								</td>
+								<!--<td align="center" style="width:30%;" ng-bind-html="totalsts.img"></td>-->
+								<td align="left">
+									<span ng-bind-html="totalsts.aimg"></span>
+									<span>{{totalsts.aname}}</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="table-a col col-100 bg">
+				<table width="100%">
+					<tr>
+						<td align="left">预测首发</td>
+						<td class="fontSize10" align="right">数据提供商：Soccer International</td>
+					</tr>
+				</table>
+			</div>
+				<!--作者：478214496@qq.com
+                    	时间：2016-09-19
+                        	描述：预测首发-->
+			<div>
+				<div class="row">
+					<div class="col col-30">
+						<p class="bold">{{match.homeName}}</p>
+					</div>
+					<div class="col">
+						<p class="fontSize10">阵型{{match.homeFormation}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="table-b col col-100">
+						<table class="fontSize10" width="100%">
+							<tr class="zhenrong">
+								<td>位置</td>
+								<td>球员</td>
+								<td>评级</td>
+								<td>近5场表现</td>
+							</tr>
+							<tr ng-repeat="hometeams in homesf" ng-class="{'关键球员' :'tabdold',false:''} [hometeams.importance]">
+								<td>{{hometeams.position}}</td>
+								<td>{{hometeams.name}}</td>
+								<td>{{hometeams.importance}}</td>
+								<td>
+									<!--<a href="xl_zixunplayer.html?playerid={{hometeams.playerid}}" style="font-size:10px;">查看</a>-->
+									<a href="" ng-click="openPopover($event,hometeams.playerid,langue)" style="font-size:10px;">查看</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col" style="text-align: center;">主队替补球员</div>
+				</div>
+				<div class="row">   <!--替补-->
+					<div class="table-b col col-100">
+						<table class="fontSize10" width="100%">
+							<tr class="zhenrong">
+								<td>位置</td>
+								<td>球员</td>
+								<td>评级</td>
+								<td>近5场表现</td>
+							</tr>
+							<tr ng-repeat="hometeams in hometibu" ng-class="{'关键球员' :'tabdold',false:''} [hometeams.importance]">
+								<td>{{hometeams.position}}</td>
+								<td>{{hometeams.name}}</td>
+								<td>{{hometeams.importance}}</td>
+								<td>
+									<!--<a href="xl_zixunplayer.html?playerid={{hometeams.playerid}}" style="font-size:10px;">查看</a>-->
+									<a href="" ng-click="openPopover($event,hometeams.playerid,langue)" style="font-size:10px;">查看</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-30">
+						<p style="font-size:15px;font-weight:bold;">{{match.awayName}}</p>
+					</div>
+					<div class="col">
+						<p class="fontSize10">阵型{{match.awayFormation}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="table-b col col-100">
+						<table class="fontSize10" width="100%">
+							<tr class="zhenrong">
+								<td>位置</td>
+								<td>球员</td>
+								<td>评级</td>
+								<td>近5场表现</td>
+							</tr>
+							<tr ng-repeat="awayteams in awaysf" ng-class="{ '关键球员' :'tabdold',false:''} [awayteams.importance]">
+								<td>{{awayteams.position}}</td>
+								<td>{{awayteams.name}}</td>
+								<td>{{awayteams.importance}}</td>
+								<td>
+									<!--<a href="xl_zixunplayer.html?playerid={{awayteams.playerid}}" style="font-size:10px;">查看</a>-->
+									<a href="" ng-click="openPopover($event,awayteams.playerid,langue)" style="font-size:10px;">查看</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col" style="text-align: center;">客队替补球员</div>
+				</div>
+				<div class="row">
+					<div class="table-b col col-100">
+						<table class="fontSize10" width="100%">
+							<tr class="zhenrong">
+								<td>位置</td>
+								<td>球员</td>
+								<td>评级</td>
+								<td>近5场表现</td>
+							</tr>
+							<tr ng-repeat="awayteams in awaytibu" ng-class="{ '关键球员' :'tabdold',false:''} [awayteams.importance]">
+								<td>{{awayteams.position}}</td>
+								<td>{{awayteams.name}}</td>
+								<td>{{awayteams.importance}}</td>
+								<td>
+									<!--<a href="xl_zixunplayer.html?playerid={{awayteams.playerid}}" style="font-size:10px;">查看</a>-->
+									<a href="" ng-click="openPopover($event,awayteams.playerid,langue)" style="font-size:10px;">查看</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- ECharts的Dom -->
+			<!--<div class="table-a col col-100 bg">
+				<table width="100%">
+					<tr>
+						<td align="left">赔率走势</td>
+					</tr>
+				</table>
+			</div>
+			<div class="echartsdiv" style="clear: both;width: 100%;">
+				<div class="zuo" style="float:left;width: 50%;border: 1px solid #ddd;">
+					<div id="shengMain" style="width: 70%; height:100px;margin: 0 15%;"></div>
+					<div id="pingMain" style="width: 70%;height:100px;margin: 0 15%;"></div>
+					<div id="fuMain" style="width: 70%;height:100px;margin: 0 15%;"></div>
+				</div>
+				<div class="you" style="float:left;width: 50%;border: 1px solid #ddd;">
+					<div id="rshengMain" style="width: 70%;height:100px;margin: 0 15%;"></div>
+					<div id="rpingMain" style="width: 70%;height:100px;margin: 0 15%;"></div>
+					<div id="rfuMain" style="width: 70%;height:100px;margin: 0 15%;"></div>
+				</div>
+			</div>-->
+			<div class="item item-avatar-left" style="padding-left: 0px;">
+				<div class="fontweight" align="left">球队表现对比</div>
+				<div class="ding" ng-if="jiantou==false" ng-click="jiantouDownClick()">
+					<img src="web_img/xiasan.png" />
+				</div>
+			</div>
+		</div>
+		<div id="mask" class="mask" align="center">
+			<div id="heid">
+				<img src="web_img/loading.gif" style="text-color:red;">
+			</div>
+		</div>
+	</ion-content>
+
+	<ion-content ng-show="jiantou==true">
+				<!--作者：478214496@qq.com
+                    	时间：2016-09-21
+                        	描述：球队表现对比-->
+		<div class="div1"></div>
+		<div>
+			<div class="div2" align="left">球队表现对比</div>
+			<div class="div3" ng-if="jiantou==true" ng-click="jiantouUpClick()">
+				<img src="web_img/shangsan.png" />
+			</div>
+		</div>
+		<br />
+		<div class="table-d col col-100" ng-if="jiantou==true" ng-cloak class="ng-cloak">
+			<table width="100%">
+				<tr>
+					<td class="fontweight" colspan="2" align="left">{{match.homeName}}</td>
+					<td class="fontweight" align="center"></td>
+					<td class="fontweight" colspan="2" align="right">{{match.awayName}}</td>
+				</tr>
+				<tr>
+					<td width="10%">
+						<div class="pingjun wei1">{{teamDetail.hjin}}</div>
+					</td>
+					<td class="td1">
+						<div style="{{teamDetail.hjinsty}}" class="hjin"></div>
+					</td>
+					<td class="td2" align="center">
+						平均进球
+					</td>
+					<td class="td1" align="right">
+						<div style="{{teamDetail.ajinsty}}" class="ajin" align="left"></div>
+					</td>
+					<td width="10%">
+						<div class="pingjun wei2">{{teamDetail.ajin}}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="pingjun wei3">{{teamDetail.hshi}}</div>
+					</td>
+					<td class="shi" align="left">
+						<div style="{{teamDetail.hshisty}}" class="hjin"></div>
+					</td>
+					<td class="shi" align="center">
+						平均失球
+					</td>
+					<td class="shi" align="right">
+						<div style="{{teamDetail.ashisty}}" class="ajin"></div>
+					</td>
+					<td align="right">
+						<div class="pingjun wei4">{{teamDetail.ashi}}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="pingjun wei5">{{teamDetail.hchang}}</div>
+					</td>
+					<td class="shi" align="left">
+						<div style="{{teamDetail.hchangsty}}" class="ajin"></div>
+					</td>
+					<td class="shi" align="center">
+						总失球数
+					</td>
+					<td class="shi" align="right">
+						<div style="{{teamDetail.achangsty}}" class="ajin"></div>
+					</td>
+					<td align="right">
+						<div class="pingjun wei6">{{teamDetail.achang}}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="pingjun wei7">{{teamDetail.hchangno}}</div>
+					</td>
+					<td class="shi" align="left">
+						<div style="{{teamDetail.hchangnosty}}" class="ajin"></div>
+					</td>
+					<td class="shi" align="center">
+						总进球数
+					</td>
+					<td class="shi" align="right">
+						<div style="{{teamDetail.achangnosty}}" class="ajin"></div>
+					</td>
+					<td align="right">
+						<div class="pingjun wei8">{{teamDetail.achangno}}</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col col-100" ng-if="jiantou==true">
+			<br />
+			<div style="font-size: 12px;">进球时间</div>
+			<br />
+			<div class="fontweight">{{match.homeName}}</div>
+			<br />
+			<p style="text-align: center;color: #9D9D9D;">{{idear}}</p>
+			<div class="timeevenbox" ng-cloak class="ng-cloak">
+				<div class="timemovebox">
+					<div class="timemove"></div>
+					<div class="timenodebox">
+						<div class="timenode">
+							<span class="timenodein">
+                                <img class="littlein" src="web_img/little_gray.png" title="中场">
+                            </span>
+						</div>
+						<div class="timenode">
+							<span class="timenodezhu" ng-repeat="point in pointers">								
+                                <img style={{point.perPic}} ng-src="{{point.src}}">
+                                <img style={{point.per}} ng-src="{{point.src1}}">
+                                <p class="odd" style={{point.pers}}>{{point.player}}</p>
+                                <p style={{point.perss}}>{{point.num}}'</p>
+                            </span>
+						</div>
+						<div class="timenode">
+							<span class="timenodeke" ng-repeat="point in poiners">
+                                <img style={{point.perPic}} ng-src="{{point.src}}">
+                                <img style={{point.per}} ng-src="{{point.src1}}">
+                                <p style={{point.pers}}>{{point.player}}</p>
+                                <p style={{point.perss}}>{{point.num}}'</p>
+                            </span>
+						</div>
+						<div class="timenode">
+							<span class="timenodeke">
+                                <div class="count00">{{count0}}</div>
+                            </span>
+						</div>
+						<div class="timenode">
+							<span class="timenodeke">
+                                <div class="count900">{{count90}}</div>
+                            </span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="fontweight">{{match.awayName}}</div>
+		<br />
+		<!--球员详情-->
+		<div>
+			<script id="my-popover.html" type="text/ng-template">
+				<ion-popover-view>
+					<header class="bar bar-header players">
+						<h1 class="title">球员发挥统计</h1>
+					</header>
+					<ion-content class="playerss">
+						<div>&nbsp;</div>
+						<div>&nbsp;</div>
+						<div style="float: left;text-align: center;" class="col col-40">
+							<img class="qiuyuan" ng-src="{{user.src}}">
+						</div>
+						<div style="float: right;" class="col col-60 xiaozi">
+							<p>姓名：{{user.name}}</p>
+							<p>球队：{{user.team}}</p>
+							<p>国籍：{{user.nat}}</p>
+							<p>位置：{{user.place}}</p>
+							<p>评级：{{user.rate}}</p>
+						</div>
+						<div class="table-bb col col-100">
+							<table class="num" border="1" cellpadding="3" cellspacing="1" width="100%">
+								<tr>
+									<td>
+										<p>{{user.gamenum}}</p>
+										<p>比赛次数</p>
+									</td>
+									<td>
+										<p>{{user.rele}}</p>
+										<p>首发场次</p>
+									</td>
+									<td>
+										<p>{{user.goals}}</p>
+										<p>进球数</p>
+									</td>
+									<td>
+										<p>{{user.yello}}</p>
+										<p>黄牌次数</p>
+									</td>
+									<td>
+										<p>{{user.red}}</p>
+										<p>红牌次数</p>
+									</td>
+								</tr>
+
+							</table>
+						</div>
+						<div class="tit">近5场比赛表现</div>
+						<div class="table-bb col col-100">
+							<table border="1" cellpadding="3" cellspacing="1" width="100%">
+								<tr style="background:#DCDCDC;">
+									<td>赛程</td>
+									<td>球员表现</td>
+								</tr>
+								<tr class="zi" ng-repeat="hateam in user.teams">
+									<td>
+										{{hateam.name}}
+										<span ng-bind-html="hateam.shuying"></span>
+									</td>
+									<td ng-bind-html="hateam.imghtml"></td>
+								</tr>
+							</table>
+						</div>
+						<div>
+							<table class="pai" border="0" cellpadding="3" style="font-size:15px;" cellspacing="1" width="100%">
+								<tr>
+									<td><img src="web_img/yellow.png" />黄牌</td>
+									<td><img src="web_img/red.png" />红牌</td>
+									<td><img src="web_img/pu_on.png" />换上</td>
+									<td><img src="web_img/pu_down.png" />换下</td>
+								</tr>
+								<tr>
+									<td><img src="web_img/yes.png" />首发</td>
+									<td><img src="web_img/penalty.png" />进球</td>
+									<td><img src="web_img/usual.png" />乌龙球</td>
+								</tr>
+							</table>
+						</div>
+					</ion-content>
+				</ion-popover-view>
+			</script>
+		</div>
+		<!--推荐-->
+		<div>
+			<script id="my-modal.html" type="text/ng-template">
+				<ion-popover-view>
+					<header class="bar bar-header players">
+						<h1 class="title">专家推荐详情</h1>
+					</header>
+					<ion-content class="playerss">
+						<br />
+						<br />
+						<div class="col col-100">
+							<p class="matchtitle">{{caiyi}}</p>
+							<p class="timetitle">
+								<span>{{day}} | 竞彩足球  | <span class="colored">{{state}}</span></span>
+							</p>
+							<p class="bgnew"><img class="comma" src="web_img/comma.png" />{{doubt}}</p>
+						</div>
+						<div class="col col-100">
+							<table class="white" width="100%" cellspacing="1">
+								<thead>
+									<tr class="hh">
+										<td>
+											<img src="web_img/Uruguay.png" /><br />
+											<span>{{one}}</span>
+										</td>
+									</tr>
+									<tr class="hh">
+										<td class="trtd">
+											<span>{{country}}</span><br />
+											<span>{{newday}}</span>
+										</td>
+									</tr>
+									<tr class="hh">
+										<td>
+											<img src="web_img/Mexico.png" /><br />
+											<span>{{two}}</span>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="col col-20"><span>{{plan1}}</span><br /><i>{{odds1}}</i></td>
+										<td class="col col-80 branch">
+											<span class="huang">{{plan2}}<br /><i>{{odds2}}</i></span>
+											<span>{{plan3}}<br /><i>{{odds3}}</i></span>
+											<span>{{plan4}}<br /><i>{{odds4}}</i></span>
+										</td>
+									</tr>
+									<tr ng-repeat="pan in go">
+										<td class="col col-20"><span>{{pan.plan5}}</span><br /><i>{{pan.odds5}}</i></td>
+										<td class="col col-80 branch">
+											<span>{{pan.plan6}}<br /><i>{{pan.odds6}}</i></span>
+											<span>{{pan.plan7}}<br /><i>{{pan.odds7}}</i></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="objective">
+							<p class="col col-100">温度：{{celsius}}</p>
+							<p class="col col-100">裁判：<span>{{referee}}</span></p>
+							<p class="col col-100">球场：<span>{{court}}</span></p>
+						</div>
+						<div class="objective">
+							<b class="col col-100">市场盘口：</b>
+							<p class="col col-100">亚盘：<span>{{figure1}}</span><span>{{figure2}}</span><span>{{figure3}}</span></p>
+							<p class="col col-100">大小球：<span>{{figure4}}</span><span>{{figure5}}</span><span>{{figure6}}</span></p>
+						</div>
+						<div class="personal">
+							<b>{{onedui}}：</b>
+							<p>{{it1}}</p>
+							<p class="col col-100">停赛：<span>{{stop1}}</span></p>
+							<p class="col col-100">伤病：<span>{{injury1}}</span></p>
+							<p class="col col-100">出战成绩：<span>{{battle1}}</span></p>
+						</div>
+						<div class="personal">
+							<b>{{twodui}}：</b>
+							<p>{{it2}}</p>
+							<p class="col col-100">停赛：<span>{{stop2}}</span></p>
+							<p class="col col-100">伤病：<span>{{injury2}}</span></p>
+							<p class="col col-100">出战成绩：<span>{{battle2}}</span></p>
+						</div>
+						<div class="personal">
+							<b>本场分析：</b>
+							<p>{{it3}}</p>
+						</div>
+						<div class="objective">
+							<b>本场推荐：</b>
+							<p class="col col-100">竞彩胜平负：{{dai1}}</p>
+							<p class="col col-100">亚盘：<span>{{dai2}}</span></p>
+							<p class="col col-100">大小球：<span>{{dai3}}</span></p>
+						</div>
+					</ion-content>
+				</ion-popover-view>
+			</script>
+		</div>
+	</ion-content>
+</ion-view>

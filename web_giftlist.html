@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>彩ex</title>
+	<meta name="viewport" content="width=375">
+    <meta name="viewport" content="width=414">
+	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+	<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+</head>
+<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="web_js/webgame.js"></script>
+<script type="text/javascript" src="web_js/angular.min.js"></script>
+<script type="text/javascript" src="web_js/aggflist.js"></script>
+<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+<link rel="stylesheet" href="web_css/style1.css">
+
+<body ng-app="aggflist">
+<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+	<div class="container">
+		<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+		<ul class="pcnav clearfix">
+			<li ng-repeat="pcnav in pcnavs.pcnavbox">
+	          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+	       </li>
+			<li><a href=""><img ng-src="{{pcnavs.src}}"></a></li>
+		</ul>
+		<p class="signin">
+			<span>
+				<a href=""><img ng-src="{{pcnavs.header}}"></a>
+				<i>56321币</i>
+				<em>|</em>
+				<a href="" ng-click="quitOut()">退出</a>
+			</span>
+		</p>
+	</div>
+</div>
+<div ng-controller="aggflistctrl as gift">
+	<main class="mtop">
+	    <header id="top">
+	     <a id="point" class="point">
+	     			<img ng-src="{{gift.src0}}">
+	     		</a>
+	        <span>{{gift.word}}</span>
+	        <a id="pointe" class="pointer">
+	        	<img ng-src="{{gift.src1}}">
+	        </a>
+	    </header>
+	</main>
+	
+	<a href="#cd-nav" class="cd-nav-trigger">
+	  <span class="cd-nav-icon"></span>
+	  <svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+	  <circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+	  </svg>
+	</a>
+	
+	<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+	  <div class="cd-navigation-wrapper">
+	    <div class="cd-half-block">
+	      <h2>
+	      	<a class="ce" ng-href="{{gift.url}}">
+	      		<img class="la" ng-src="{{gift.src}}">
+	      	</a>
+	      </h2>
+	      <nav>
+	        <ul class="cd-primary-nav">
+	          <li ng-repeat="nav in gift.navbox">
+	          	<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+	          </li>
+	        </ul>
+	      </nav>
+	    </div>
+	  </div>
+	</div>
+</div>
+    <article ng-controller="aghuanctrl as hgift">
+        <section>
+            <div class="couser col-xs-12 col-sm-12">
+                <P><img class="du"  ng-src="{{hgift.hai}}"></P>
+                <span class="du1"><img ng-src="{{hgift.jinbi}}"><br><em>{{hgift.mon}}</em></span>
+                <span class="du2">{{hgift.hu}}<br><em>{{hgift.ci}}</em></span>
+                <marquee class="du3">{{hgift.auto}}<b style="color:#e85859;">{{hgift.auto0}}</b></marquee>
+            </div>
+
+            <div class="selectdrop2 col-xs-12 col-sm-12">
+                <div>
+                        <ul id="tabGift">
+                            <li>{{hgift.user}}</li>
+                            <li>{{hgift.ren}}</li>
+                            <li>{{hgift.lu}}</li>
+                        </ul>
+                        <div id="contentgift">
+                            <div class=" col-xs-12 col-sm-12 push">
+                                    <table class="table" border="1">
+                                        <tbody>
+                                            <tr class="first">
+                                                <td ng-repeat="userr in hgift.userry">{{userr.text}}</td>
+                                            </tr>
+                                            <tr ng-repeat="usee in hgift.useey">
+                                                <td>{{usee.te}}</td>
+                                                <td>{{usee.tex}}</td>
+                                                <td>{{usee.text}}</td>
+                                                <td>{{usee.text1}}</td>
+                                                <td>{{usee.text2}}</td>
+                                                <td>{{usee.text3}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class=" col-xs-12 col-sm-12 push">
+                                <table class="table" border="1">
+                                        <tbody>
+                                            <tr class="first">
+                                                <td ng-repeat="uss in hgift.ussy">{{uss.text}}</td>
+                                            </tr>
+                                            <tr ng-repeat="use in hgift.usey">
+                                            		<td>{{use.te}}</td>
+                                                <td>{{use.tex}}</td>
+                                                <td>{{use.text}}</td>
+                                                <td>{{use.text1}}</td>
+                                                <td>{{use.text2}}</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                            </div>
+                            <div class=" col-xs-12 col-sm-12 push">
+                                <table class="table" border="1">
+                                        <tbody>
+                                            <tr class="first">
+                                                <td ng-repeat="uss in hgift.ussy">{{uss.text}}</td>
+                                            </tr>
+                                            <tr ng-repeat="use in hgift.uusey">
+                                            		<td>{{use.te}}</td>
+                                                <td>{{use.tex}}</td>
+                                                <td>{{use.text}}</td>
+                                                <td>{{use.text1}}</td>
+                                                <td>{{use.text2}}</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </article>
+</body>
+</html>

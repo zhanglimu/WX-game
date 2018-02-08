@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>彩ex</title>
+	<meta name="viewport" content="width=375">
+    <meta name="viewport" content="width=414">
+	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+	<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+</head>
+<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="web_js/bootstrap.min.js"></script>
+<script type="text/javascript" src="web_js/webgame.js"></script>
+<script type="text/javascript" src="web_js/angular.min.js"></script>
+<script type="text/javascript" src="web_js/agnews.js"></script>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script><!--日期-->
+<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+<link rel="stylesheet" href="web_css/style1.css">
+
+<body ng-app="agnews">
+<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+	<div class="container">
+		<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+		<ul class="pcnav clearfix">
+			<li ng-repeat="pcnav in pcnavs.pcnavbox">
+	          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+	       </li>
+			<li><a href=""><img ng-src="{{pcnavs.src}}"></a></li>
+		</ul>
+		<p class="signin">
+			<span>
+				<a href=""><img ng-src="{{pcnavs.header}}"></a>
+				<i>56321币</i>
+				<em>|</em>
+				<a href="" ng-click="quitOut()">退出</a>
+			</span>
+		</p>
+	</div>
+</div>
+<div ng-controller="agnewsctrl as news">
+	<main class="mtop">
+	    <header id="top">
+	     		<a id="point" class="point">
+	     			<img ng-src="{{news.src0}}">
+	     		</a>
+	        <span>{{news.word}}</span>
+	        <a id="pointe" class="pointer">
+	        	<img ng-src="{{news.src1}}">
+	        </a>
+	    </header>
+	</main>
+	
+	<a href="#cd-nav" class="cd-nav-trigger">
+	  <span class="cd-nav-icon"></span>
+	  <svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+	  <circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+	  </svg>
+	</a>
+	
+	<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+	  <div class="cd-navigation-wrapper">
+	    <div class="cd-half-block">
+	      <h2>
+	      	<a class="ce" ng-href="{{news.url}}">
+	      		<img class="la" ng-src="{{news.src}}">
+	      	</a>
+	      </h2>
+	      <nav>
+	        <ul id="close" class="cd-primary-nav">
+	          <li ng-repeat="nav in news.navbox">
+	          	<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+	          </li>
+	        </ul>
+	      </nav>
+	    </div>
+	  </div>
+	</div>
+</div>
+<article>
+    <section>
+                <div class="explain col-xs-12 col-sm-12" ng-controller="xuanctrl as shai">
+		                <button class="right lian">{{shai.liansai}}</button>
+		                
+		                <p class="right ytm" style="width: 35%; margin: 0;">
+							<button>{{shai.zuo}}</button>
+							<button>{{shai.jin}}</button>
+							<button>{{shai.ming}}</button>
+		                </p>
+		                <p class="form-group right" style="margin: 0;">
+							<input type="text" class="Wdate xin" onfocus="WdatePicker({lang:'zh-ch',dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+						</p>
+                </div>
+        <div id="ytm_tab">
+        	<div ng-controller="newsctrl as new">
+        		<div class="sport col-xs-12 col-sm-12"><span>{{new.oulian}}</span></div>
+            	<div class="team col-xs-12 col-sm-12 col-md-6" name="teamBody">
+                <div class="teamdiv clearfix">
+                    <p class="team_img left">
+                        <img ng-src="{{new.src}}"></br>
+                        <span>{{new.text}}</span>
+                    </p>
+                    <p class="team_time left">
+                        <!--<span class="fontbold">vs</span>-->
+                        <span class="font_color">{{new.wor}}</span>
+                        <span class="font">{{new.word}}</span>
+                        <span>{{new.wod}}</span>
+                    </p>
+                    <p class="team_img right">
+                        <img ng-src="{{new.src1}}"></br>
+                        <span>{{new.text1}}</span>
+                    </p>
+                </div>
+                <!--<div class="timeevenbox">
+                    <div class="timemovebox">
+                        <div class="timemove"></div>
+                        <div class="timenodebox">
+                            <div class="timenode">
+                                <span class="timenodein">
+                                    <img class="littlein" ng-src="{{new.url}}">
+                                </span>
+                            </div>
+                            <div class="timenode">
+                                <span class="timenodezhu" ng-repeat="point in new.pointer">
+                                    <img class="color" ng-src="{{point.src}}">
+                                    <img class="little" ng-src="{{point.src1}}">
+                                </span>
+                                <span class="timenodeke" ng-repeat="poin in new.poiner">
+                                    <img class="color2" ng-src="{{poin.src}}">
+                                    <img class="little2" ng-src="{{poin.src1}}">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="count0">{{new.ling}}</span>
+                    <span class="count90">{{new.jiu}}</span>
+                </div>-->
+              </div>
+              <div class="team1 col-xs-12 col-sm-12 col-md-6" name="teamBody">
+                <div class="teamdiv clearfix">
+                    <p class="team_img left">
+                        <img ng-src="{{new.src}}"></br>
+                        <span>{{new.text}}</span>
+                    </p>
+                    <p class="team_time left">
+                        <span class="font">{{new.word}}</span>
+                        <span>{{new.wod}}</span>
+                    </p>
+                    <p class="team_img right">
+                        <img ng-src="{{new.src1}}"></br>
+                        <span>{{new.text1}}</span>
+                    </p>
+                </div>
+              </div>
+          </div>
+          <div ng-controller="newsctrl as new">
+            <div class="team1 col-xs-12 col-sm-12 col-md-6" name="teamBody">
+                <div class="teamdiv clearfix">
+                    <p class="team_img left">
+                        <img ng-src="{{new.src}}"></br>
+                        <span>{{new.text}}</span>
+                    </p>
+                    <p class="team_time left">
+                        <span class="font">{{new.word}}</span>
+                        <span>{{new.wod}}</span>
+                    </p>
+                    <p class="team_img right">
+                        <img ng-src="{{new.src1}}"></br>
+                        <span>{{new.text1}}</span>
+                    </p>
+                </div>
+            </div>
+          </div>
+          <div ng-controller="newsctrl as new">
+            <div class="team col-xs-12 col-sm-12 col-md-6" name="teamBody">
+                <div class="teamdiv clearfix">
+                    <p class="team_img left">
+                        <img ng-src="{{new.src}}"></br>
+                        <span>{{new.text}}</span>
+                    </p>
+                    <p class="team_time left">
+                        <span class="font">{{new.word}}</span>
+                        <span>{{new.wod}}</span>
+                    </p>
+                    <p class="team_img right">
+                        <img ng-src="{{new.src1}}"></br>
+                        <span>{{new.text1}}</span>
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+</article>
+          <!--联赛-->
+    <div id="page-wrap" ng-controller="liectrl as dui">
+        <div id="content-wrap">     
+            <div id="content-left" class="demo">
+                <div class="overlay" id="lian_overlay" style="display:none;"></div>
+                <div class="box2" id="lian_box" style="text-align:center;">
+                    <a class="boxclose1" id="lian_boxclose"></a>
+                    <ul>
+                    	<li ng-repeat="sai in dui.lsai" ng-click="news.lsai()"><span>{{sai.fenlei}}</span></li>
+                    </ul>
+                    <p style="padding:0 10px;">
+	                    <button class="lian_cancle">{{dui.qu}}</button>
+	                    <button class="lian_sure">{{dui.ding}}</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>

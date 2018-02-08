@@ -1,0 +1,25 @@
+<ion-side-menus class="ionstyle">
+
+      <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-stable nav-title-slide-ios7 bar-stable">
+          <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-right">联赛资料库</i> Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContentNO" animation="slide-left-right"></ion-nav-view>
+      </ion-pane>
+
+      <ion-side-menu side="right">
+        <header class="bar bar-header bar-stable">
+          <h1 class="title">联赛资料库</h1>
+        </header>
+        <ion-content class="has-header">
+        	
+          <ion-list>
+            <ion-item nav-clear menu-close href="#/app/playlists" ng-click="weekClick(week.day)" ng-repeat="week in weeks">
+            	{{week}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+
+			

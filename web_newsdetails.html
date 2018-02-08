@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>彩ex</title>
+		<meta name="viewport" content="width=375">
+    	<meta name="viewport" content="width=414">
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+		<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+	</head>
+	<!--<link href="web_css/ionic.min.css" rel="stylesheet">-->
+	<script src="//cdn.bootcss.com/ionic/1.3.1/js/ionic.bundle.min.js"></script>
+	<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="web_js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="web_js/webgame.js"></script>
+	<script type="text/javascript" src="web_js/agdetail.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+	<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+	<link rel="stylesheet" href="web_css/style1.css">
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<body ng-app="agdetails">
+<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+	<div class="container">
+		<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+		<ul class="pcnav clearfix">
+			<li ng-repeat="pcnav in pcnavs.pcnavbox">
+	          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+	       </li>
+			<li><a href=""><img ng-src="{{pcnavs.src}}"></a></li>
+		</ul>
+		<p ng-class="{{loginClass}}"  id="loginInfo">
+			<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+			<p class="signin" ng-if="loginFagle==true">
+				<span>
+					<a href=""><img src="{{headPicUrl}}"></a>
+					<i>{{playerMoney}}币</i>
+					<em>|</em>
+					<a href="" ng-click="quitOut()">退出</a>
+				</span>
+			</p>
+		</p>
+	</div>
+	<!--登录-->
+	<div class="theme-popover">
+	    <div class="theme-poptit">
+	        <a href="javascript:;" title="关闭" class="close"  ng-click="thempClose()">×</a>
+	        <h3>请用微信账号扫描</h3>
+	    </div>
+	    <div class="theme-popbod dform">
+			<div id="code"></div>
+	    </div>
+	</div>
+</div>
+		<!-- 侧拉 -->
+		<div   ng-controller="agdetailctrl as detail">
+			<main class="mtop">
+				<header id="top">
+					<a id="point" class="point">
+						<img ng-src="{{detail.src0}}">
+					</a>
+					<span>{{detail.word}}</span>
+					<a id="pointe" class="pointer">
+						<img ng-src="{{detail.src1}}" ng-click="refresh()">
+					</a>
+				</header>
+			</main>
+
+			<a href="#cd-nav" class="cd-nav-trigger">
+				<span class="cd-nav-icon"></span>
+				<svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+					<circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+				</svg>
+			</a>
+
+			<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+				<div class="cd-navigation-wrapper">
+					<div class="cd-half-block">
+						<h2>
+	      	<a class="ce" ng-href="{{detail.url}}">
+	      		<img class="la" ng-src="{{detail.src}}">
+	      	</a>
+	      </h2>
+						<nav>
+							<ul id="close" class="cd-primary-nav">
+								<li ng-repeat="nav in detail.navbox">
+									<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 侧拉 -->
+		<article>
+			<section>
+				<div class="team col-xs-12 col-sm-12" name="teamBody" ng-controller="detailctrl">
+
+					<div class="teamdiv clearfix">
+						<p class="team_img left">
+							<img ng-src="{{detailing.src}}"><sup><img src="{{detailing.st1}}" style="width: 20px;"/></sup><br />
+							<span>{{detailing.text}}</span>
+						</p>
+						<p class="team_time left">
+							<!--<span class="fontbold">vs</span>-->
+							<span class="font_color">{{detailing.wor}}</span>
+							<span class="font">{{detailing.word}}</span>
+							<span>{{detailing.wod}}</span>
+						</p>
+						<p class="team_img right">
+							<img ng-src="{{detailing.src1}}"><sup><img src="{{detailing.st2}}" style="width: 20px;"/></sup><br />
+							<span>{{detailing.text1}}</span>
+						</p>
+					</div>
+					<div class="timeevenbox">
+						<div class="timemovebox">
+							<div class="timemove"></div>
+							<div class="timenodebox">
+								<div class="timenode">
+									<span class="timenodein">
+                                    <img class="littlein" ng-src="{{detailing.url}}">
+                                </span>
+								</div>
+								<div class="timenode">
+									<span class="timenodezhu" ng-repeat="point in detailing.pointer">
+                                    <img style={{point.perPic}} ng-src="{{point.src}}"   title="{{point.tit}}">
+                                    <img style={{point.per}} ng-src="{{point.src1}}">
+                                </span>
+									<span class="timenodeke" ng-repeat="poin in detailing.poiner">
+                                    <img style={{poin.perPic}} ng-src="{{poin.src}}"   title="{{poin.tit}}">
+                                    <img style={{poin.per}} ng-src="{{poin.src1}}">
+                                </span>
+								</div>
+							</div>
+						</div>
+						<span class="count0">{{detailing.ling}}</span>
+						<span class="count90">{{detailing.jiu}}</span>
+					</div>
+				</div>
+				<div class="tabs tabs-style-circlefill  col-xs-12 col-sm-12" style="padding:0;">
+					<ul>
+						<li>
+							<nav ng-controller="detactrl as de">
+								<ul>
+									<li>
+										<a>{{de.zhudui}}</a>
+									</li>
+									<li>
+										<a>{{de.kedui}}</a>
+									</li>
+									<li>
+										<a>{{de.zhenr}}</a>
+									</li>
+									<li>
+										<a>{{de.saihou}}</a>
+									</li>
+								</ul>
+							</nav>
+						</li>
+						<li>
+							<div class="content-wrap">
+								<section id="section-circlefill-1" ng-controller="zhuctrl">
+									<ul class="news_list">
+										<li>
+											<p class="left">
+												<b>{{zhudui.word}}</b><br />
+												<span>阵型：{{zhudui.worda}}</span><br /><br />
+												<span>天气：{{zhudui.wordb}}</span>
+											</p>
+											<p class="left">
+												<br />
+												<span><img ng-repeat="src in zhudui.src" ng-src="{{src.srcs}}"/></span><br /><br />
+												<span>裁判：{{zhudui.text}}</span>
+											</p>
+										</li>
+										<li>
+											<p>
+												<!--<img class="data" ng-src="{{zhudui.lian}}" title="队员信息" />
+												<img class="data1" ng-src="{{zhudui.jie}}" title="队员赛迹" />-->
+												<img ng-repeat="star1 in zhudui.star1" ng-src="{{star1.star}}" title="{{star1.tilte}}">
+											</p>
+										</li>
+										<li>
+											<p style='text-align: right;'>{{zhudui.homeFmUpdateTime}}</p>
+											<p ng-bind-html="zhudui.homeSummary"></p>
+											<p> 【主队伤停】：{{zhudui.hinjury}}</p>
+											<p> 【主队停赛】：{{zhudui.hsuspended}}</p>
+											<p> 【主队可能伤停】：{{zhudui.hpossibleInjury}}</p>
+											<!--<p ng-repeat="p in zhudui.li">{{p.edit}}</p>-->
+										</li>
+									</ul>
+								</section>
+								<section id="section-circlefill-2" ng-controller="kectrl">
+									<ul class="news_list">
+										<li>
+											<p class="left">
+												<b>{{kedui.word}}</b><br />
+												<span>阵型：{{kedui.worda}}</span><br /><br />
+												<span>天气：{{kedui.wordb}}</span>
+											</p>
+											<p class="left">
+												<br />
+												<span><img ng-repeat="src in kedui.src" ng-src="{{src.srcs}}"/></span><br /><br />
+												<span>裁判：{{kedui.text}}</span>
+											</p>
+										</li>
+										<li>
+											<p>
+												<!--<img class="data" ng-src="{{kedui.lian}}" title="队员信息" />
+												<img class="data1" ng-src="{{kedui.jie}}" title="队员赛迹" />-->
+												<img ng-repeat="star1 in kedui.star1" ng-src="{{star1.star}}" title="{{star1.tilte}}">
+
+											</p>
+										</li>
+										<li>
+											<p style='text-align: right;'>{{kedui.awayFmUpdateTime}}</p>
+											<p ng-bind-html="kedui.awaySummary"></p>
+											<p> 【主队伤停】：{{kedui.ainjury}}</p>
+											<p> 【主队停赛】：{{kedui.asuspended}}</p>
+											<p> 【主队可能伤停】：{{kedui.apossibleInjury}}</p>
+											<!--<p ng-repeat="pke in kedui.like">{{pke.edit}}</p>-->
+										</li>
+									</ul>
+								</section>
+								<section id="section-circlefill-3" ng-controller="zhenctrl">
+									<ul class="news_list">
+										<li class="unitba">
+											<ul class="col-xs-6 col-sm-6 unit" style="padding: 0;">
+												<li class="checkboxFive">
+													<b>{{zhenrong.word}}</b>
+													<input type="checkbox" name="" id="checkboxFiveInput" value="主队阵容" />
+													<label for="checkboxFiveInput"></label>
+												</li>
+												<li ng-repeat="zhli in zhenrong.zhuli">
+													<span id="line_red">{{zhli.number}}</span>
+													<span>{{zhli.name}}<em>{{zhli.spot}}</em></span>
+												</li>
+											</ul>
+											<ul class="col-xs-6 col-sm-6 unit" style="padding: 0;">
+												<li class="checkboxFive1">
+													<b>{{zhenrong.word1}}</b>
+													<input type="checkbox" name="" id="checkboxFiveInput1" value="客队阵容" />
+													<label for="checkboxFiveInput1"></label>
+												</li>
+												<li ng-repeat="keli in zhenrong.keli">
+													<span id="line_green">{{keli.number}}</span>
+													<span>{{keli.name}}<em>{{keli.spot}}</em></span>
+												</li>
+											</ul>
+										</li>
+										<li class="unitba">
+											<ul class="col-xs-6 col-sm-6 unit" style="padding: 0;">
+												<li class="checkboxFive">
+													<b>{{zhenrong.word2}}</b>
+												</li>
+												<li ng-repeat="tili in zhenrong.tibuli">
+													<span id="line_red">{{tili.number}}</span>
+													<span>{{tili.name}}<em>{{tili.spot}}</em></span>
+												</li>
+											</ul>
+											<ul class="col-xs-6 col-sm-6 unit" style="padding: 0;">
+												<li class="checkboxFive1">
+													<b>{{zhenrong.word3}}</b>
+												</li>
+												<li ng-repeat="buli in zhenrong.butili">
+													<span id="line_red">{{buli.number}}</span>
+													<span>{{buli.name}}<em>{{buli.spot}}</em></span>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+								<section id="section-circlefill-4" ng-controller="saictrl">
+									<ul class="news_list">
+										<li>
+											<p ng-if="saihou.falg==true" style="width: 400px;">{{saihou.hou}}</p>
+											<p ng-if="saihou.falg==false">{{saihou.hou}}11111</p>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</li>
+					</ul>
+					<!--[if IE]>
+					
+					<![endif]-->
+					<!-- /content -->
+				</div>
+				<!-- /tabs -->
+			</section>
+		</article>
+
+		<!--队员信息-->
+		<div id="page-wrap" ng-controller="infoctrl as info">
+			<div id="content-wrap">
+				<div id="content-left" class="demo">
+					<div class="overlay" id="player_overlay" style="display:none;"></div>
+					<div class="box3" id="player_box" style="text-align:center;">
+						<a class="boxclose2" id="player_boxclose"></a>
+						<h4>{{info.title}}</h4>
+						<span id="sleBG1">   
+											<span id="sleHid1">  
+				                <select class="filter1">
+				                	<option value="2015/2016" ng-repeat="time in info.times">{{time.shi}}</option>
+				                </select>
+			                </span>
+						</span>
+						<div class="selectdrop1">
+							<div id="tab_content1">
+								<div id="table-container1">
+									<div class="table-top1">
+										<div class="table-mask1">
+											<table>
+												<tbody>
+													<tr id="player_first">
+														<td class="intd">
+															<div>{{info.title1}}</div>
+														</td>
+														<td class="that">
+															<div>{{info.title2}}</div>
+														</td>
+														<td class="that">
+															<div>{{info.title3}}</div>
+														</td>
+														<td class="that">
+															<div>{{info.title4}}</div>
+														</td>
+														<td class="that">
+															<div>{{info.title5}}</div>
+														</td>
+														<td class="that">
+															<div>{{info.title6}}</div>
+														</td>
+														<td class="that">
+															<div>{{info.title7}}</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="table-right1">
+										<table>
+											<tbody>
+												<tr id="player" ng-repeat="ta in info.data">
+													<td class="intd">
+														<div>{{ta.nula}}</div>
+													</td>
+													<td class="that">
+														<div>{{ta.nulb}}</div>
+													</td>
+													<td class="that">
+														<div>{{ta.nulc}}</div>
+													</td>
+													<td class="that">
+														<div>{{ta.nuld}}</div>
+													</td>
+													<td class="that">
+														<div>{{ta.nule}}</div>
+													</td>
+													<td class="that">
+														<div>{{ta.nulf}}</div>
+													</td>
+													<td class="that">
+														<div>{{ta.nulg}}</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--队员赛迹-->
+		<div id="page-wrap" ng-controller="markctrl as mark">
+			<div id="content-wrap">
+				<div id="content-left" class="demo">
+					<div class="overlay" id="track_overlay" style="display:none;"></div>
+					<div class="box3" id="track_box" style="text-align:center;">
+						<a class="boxclose2" id="track_boxclose"></a>
+						<h4>{{mark.title}}</h4>
+						<p style="display: inline-block;margin: 0;">
+							<span id="sleBG1" class="left">   
+												<span id="sleHid1">  
+					                <select class="filter1">
+					                	<option value="全部" ng-repeat="mat in mark.match">{{mat.test}}</option>
+					                </select>
+				                </span>
+							</span>
+							<span id="sleBG1" class="right">   
+												<span id="sleHid1">  
+					                <select class="filter1">
+					                	<option value="2015/2016" ng-repeat="time in mark.times">{{time.shi}}</option>
+					                </select>
+				                </span>
+							</span>
+						</p>
+						<div class="selectdrop1">
+							<div id="tab_content">
+								<div id="id">
+									<div class="table-top">
+										<div class="table-mask">
+											<table>
+												<tbody>
+													<tr ng-repeat="biao in mark.tou">
+														<td class="tdone">
+															<div>{{biao.tit1}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit2}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit3}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit4}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit5}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit6}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit7}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit8}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit9}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit10}}</div>
+														</td>
+														<td class="tdlist">
+															<div>{{biao.tit11}}</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="table-right">
+										<table>
+											<tbody>
+												<tr ng-repeat="null in mark.nulll">
+													<td class="tdone">
+														<div>{{null.hee1}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee2}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee3}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee4}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee5}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee6}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee7}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee8}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee9}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee10}}</div>
+													</td>
+													<td class="tdlist">
+														<div>{{null.hee11}}</div>
+													</td>
+												</tr>
+												<tr ng-repeat="tuzi in mark.tuwen">
+													<td class="tdone">
+														<div><span>{{tuzi.name1}}</span><br /><span>{{tuzi.number1}}</span><img ng-src="{{tuzi.srcs1}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he1}}"><img ng-src="{{tuzi.he2}}"><img ng-src="{{tuzi.he3}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he4}}"><img ng-src="{{tuzi.he5}}"><img ng-src="{{tuzi.he6}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he7}}"><img ng-src="{{tuzi.he8}}"><img ng-src="{{tuzi.he9}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he10}}"><img ng-src="{{tuzi.he11}}"><img ng-src="{{tuzi.he12}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he13}}"><img ng-src="{{tuzi.he14}}"><img ng-src="{{tuzi.he15}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he16}}"><img ng-src="{{tuzi.he17}}"><img ng-src="{{tuzi.he18}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he19}}"><img ng-src="{{tuzi.he20}}"><img ng-src="{{tuzi.he21}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he22}}"><img ng-src="{{tuzi.he23}}"><img ng-src="{{tuzi.he24}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he25}}"><img ng-src="{{tuzi.he26}}"><img ng-src="{{tuzi.he27}}"></div>
+													</td>
+													<td class="tdlist">
+														<div><img ng-src="{{tuzi.he28}}"><img ng-src="{{tuzi.he29}}"><img ng-src="{{tuzi.he30}}"></div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="web_js/cbpFWTabs.js"></script>
+		<script type="text/javascript">
+			//圆tab
+			(function() {
+
+				[].slice.call(document.querySelectorAll('.tabs')).forEach(function(el) {
+					new CBPFWTabs(el);
+				});
+
+			})();
+
+			//table表头不动
+			$(function(argument) {
+				var container = $("#table-container,#id"),
+					ltTable = container.find(".table-lt"),
+					topTable = container.find(".table-top"),
+					leftTable = container.find(".table-left"),
+					rightTable = container.find(".table-right"),
+
+					containerWidth = 0,
+					containerHeight = 0,
+
+					ltTableWidth = 0,
+					ltTableHeight = 0,
+
+					widthJson = {},
+
+					timerLT = null;
+
+				ltTableWidth = ltTable.width();
+				ltTable.width(ltTableWidth);
+				topTable.css("marginLeft", ltTableWidth);
+				leftTable.width(ltTableWidth);
+				rightTable.css("marginLeft", ltTableWidth);
+				ltTableHeight = ltTable.height();
+				leftTable.css("marginTop", ltTableHeight + "px");
+				rightTable.css("marginTop", ltTableHeight + "px");
+
+				containerHeight = container.height();
+				containerWidth = container.width();
+				topTable.width(containerWidth - ltTableWidth - (container.innerWidth() - container[0].clientWidth));
+				leftTable.height(containerHeight - ltTableHeight - (container.innerHeight() - container[0].clientHeight));
+
+				// figure out the width of each DIV in TD  --start
+				function setDivWidth(obj) {
+					$(obj).find("div").each(function(index) {
+						if(!widthJson[index]) {
+							widthJson[index] = 0;
+						}
+						if(widthJson[index] < $(this).width()) {
+							widthJson[index] = $(this).width();
+						}
+					});
+				}
+				topTable.find("tr").each(function() {
+					setDivWidth(this);
+				});
+				rightTable.find("tr").each(function() {
+					setDivWidth(this);
+				});
+
+				topTable.find("tr:first div").each(function(index) {
+					$(this).width(widthJson[index]);
+				});
+				rightTable.find("tr:first div").each(function(index) {
+					$(this).width(widthJson[index]);
+				});
+				// figure out the width of each DIV in TD  --end
+
+				container.scroll(function() {
+					var currentScrollTop = $(this).scrollTop(),
+						currentScrollLeft = $(this).scrollLeft();
+					topTable.find(".table-mask").css("left", -currentScrollLeft + "px");
+					leftTable.find(".table-mask").css("top", -currentScrollTop + "px");
+
+				});
+
+				$(document).scroll(function() {
+					var currentScrollTop = $(this).scrollTop(),
+						currentScrollLeft = $(this).scrollLeft();
+					ltTable.css("marginTop", -currentScrollTop + "px");
+					ltTable.css("marginLeft", -currentScrollLeft + "px");
+					topTable.css("marginTop", -currentScrollTop + "px");
+					topTable.css("marginLeft", ltTableWidth - currentScrollLeft + "px");
+					leftTable.css("marginTop", ltTableHeight - currentScrollTop + "px");
+					leftTable.css("marginLeft", -currentScrollLeft + "px");
+
+				});
+
+				// for IE, when window's scrollbar is moved, keep ltTable,leftTable,topTable in the correct position
+				$(window).resize(function() {
+					$(document).scroll();
+				});
+
+				//reset the width of topTable and the height of leftTable when container's size is changed, if container's size is fixed, you can skip the code below.
+				timerLT = setInterval(function() {
+					if(containerWidth != container.width() || containerHeight != container.height()) {
+						topTable.width(container.width() - ltTableWidth - (container.innerWidth() - container[0].clientWidth));
+						leftTable.height(container.height() - ltTableHeight - (container.innerHeight() - container[0].clientHeight));
+
+						containerWidth = container.width();
+						containerHeight = container.height();
+
+						container.scroll(); // for IE
+
+					};
+
+				}, 0);
+
+			});
+		</script>
+	</body>
+
+</html>

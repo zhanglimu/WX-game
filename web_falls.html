@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>游戏</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+</head>
+<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="web_js/webgame.js"></script>
+<script type="text/javascript" src="web_js/angular.min.js"></script>
+<script type="text/javascript" src="web_js/agfalls.js"></script>
+<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+<link rel="stylesheet" href="web_css/style1.css">
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+
+<body class="ng-cloak" ng-app="agfalls">
+<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+	<div class="container">
+		<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+		<ul class="pcnav clearfix">
+			<li ng-repeat="pcnav in pcnavs.pcnavbox">
+	          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+	        </li>
+			<li><a href=""><img ng-src="{{pcnavs.src}}"></a></li>
+		</ul>
+		<p ng-class="{{loginClass}}"  id="loginInfo">
+			<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+			<p class="signin" ng-if="loginFagle==true">
+				<span>
+					<a href=""><img src="{{headPicUrl}}"></a>
+					<i>{{playerMoney}}币</i>
+					<em>|</em>
+					<a href="" ng-click="quitOut()">退出</a>
+				</span>
+			</p>
+		</p>
+	</div>
+	<!--登录-->
+	<div class="theme-popover">
+	    <div class="theme-poptit">
+	        <a href="javascript:;" title="关闭" class="close"  ng-click="thempClose()">×</a>
+	        <h3>请用微信账号扫描</h3>
+	    </div>
+	    <div class="theme-popbod dform">
+			<div id="code"></div>
+	    </div>
+	</div>
+</div>
+	<div ng-controller="fallsctrl as falls">
+		<main class="mtop">
+		    <header id="top">
+		        <span>{{::falls.word}}</span>
+		    </header>
+		</main>
+		
+		<a href="#cd-nav" class="cd-nav-trigger">
+		  <span class="cd-nav-icon"></span>
+		  <svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+		  <circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+		  </svg>
+		</a>
+		
+		<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+		  <div class="cd-navigation-wrapper">
+		    <div class="cd-half-block">
+		      <h2>
+		      	<a class="ce" ng-href="{{::falls.url}}">
+		      		<img class="la" ng-src="{{::falls.src}}">
+		      	</a>
+		      </h2>
+		
+		      <nav>
+		        <ul id="close" class="cd-primary-nav">
+		          <li ng-repeat="nav in falls.navbox">
+		          	<a ng-class="{selected : nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{::nav.url}}">{{::nav.text}}</a>
+		          </li>
+		        </ul>
+		      </nav>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	<div id="container" class="container" ng-controller="agfall as fall">
+	    <div id="content" class="col-xs-12 col-sm-12 image">
+	              <div class="col-xs-3 col-sm-3 webcai">
+	              </div>
+	              <div class="col-xs-6 col-sm-6 webcai1">
+	                  <a><img ng-src="{{::fall.src}}"></a>
+	              </div>
+	              <div class="col-xs-3 col-sm-3 webcai2">
+	                  <a><img class="web_check_click ren" ng-src="{{::fall.src1}}"></a><br />
+	                  <a><img class="gold" ng-src="{{::fall.src2}}"></a><br />
+	                  <b class="bi">{{userMoney}}</b>
+	              </div>
+	    </div>
+	
+	                  
+			<div id="footer" class="footp"> <!--垂直居中+class：chui-->
+			    <!--<div class="left">
+			      <p ng-repeat="game in fall.games_left" id={{::game.color}} style="height:{{::game.pct}}; display: table;"> 
+			        <a href="{{::game.dataUrl}}" class="chui">
+			            <b>{{::game.title}}</b>
+			            <em class="dis">({{::game.num}}场)</em>
+			        </a>
+			      </p>
+			    </div>
+			    <div class="right">
+			      <p ng-repeat="game in fall.games_right" id={{::game.color}} style="height:{{::game.pct}};display: table;">
+			        <a href="{{::game.dataUrl}}" class="chui">
+			            <b>{{::game.title}}</b>
+			            <em class="dis">({{::game.num}}场)</em>
+			        </a>
+			      </p>
+			    </div>-->
+			    <div class="bisai">
+			    	<dl class="col-md-4 col-xs-12" ng-repeat="games in fall.gamelist">
+			    		<dt>
+			    			<span>{{::games.time}}<i>{{::games.more}}场</i></span>
+			    			<span class="right" onclick="createDiv('container')"><img ng-click="toggle()" class="more"></img></span>
+			    		</dt>
+			    		<dd class="clearfix" {{::game.dataUrl}}>
+			    			<p class="left c">
+				                <img ng-src="{{::games.prc}}"/>
+				                <span>{{::games.best}}</span>
+				            </p>
+				            <p class="left cd">
+				                <span style="float: left;">{{games.num}}</span>
+				                <span>vs</span>
+				                <span style="float: right;">{{games.num1}}</span>
+				                <em>{{::games.second}}</em>
+				            </p>
+				            <p class="right d">
+				                <img ng-src="{{::games.prc1}}"/>
+				                <span>{{::games.best1}}</span>
+				            </p>
+			    		</dd>
+			    		<dd class="clearfix" {{::game.dataUrl}}>
+			    			<p class="left c">
+				                <img ng-src="{{::games.prc}}"/>
+				                <span>{{::games.best}}</span>
+				            </p>
+				            <p class="left cd">
+				                <span style="float: left;">{{games.num}}</span>
+				                <span>vs</span>
+				                <span style="float: right;">{{games.num1}}</span>
+				                <em>{{::games.second}}</em>
+				            </p>
+				            <p class="right d">
+				                <img ng-src="{{::games.prc1}}"/>
+				                <span>{{::games.best1}}</span>
+				            </p>
+			    		</dd>
+			    	</dl>
+			    </div>
+			</div>
+	      
+	</div> 
+
+	<!-- 签到 -->
+    <div id="page-wrap" ng-controller="hhctrl as hehe">
+        <div id="content-wrap">     
+            <div id="content-left" class="demo">
+                <div class="overlay" id="web_overlay" style="display:none;"></div>
+                <div class="box1" id="web_box" style="text-align:center;">
+                    <a class="boxclose1" id="web_boxclose"></a>
+                    <p class="imgbg"><img ng-src="{{::hehe.src3}}"></p>
+                    <p class="ni">{{::hehe.text}}</p>
+                    <p class="signbutton"><button>{{::hehe.words}}</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+function createDiv(brother){
+	brother=brother?document.getElementById(brother):document.body;
+	var html='<dd class="clearfix">'+
+	             '<p class="left c"><img>123</img><span>456</span></p>'+
+	             '<p class="left cd"><span style="float: left;">789</span><span>vs</span><span style="float: right;">147</span><em>258</em></p>'+
+	             '<p class="right d"><img>369</img><span>357</span></p>'+
+	         '</dd>';
+	brother.insertAdjacentHTML('beforeend',html);
+}
+</script>
+</html>

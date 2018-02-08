@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>彩ex</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+	</head>
+	<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="web_js/webgame.js"></script>
+	<script type="text/javascript" src="web_js/angular.min.js"></script>
+	<script type="text/javascript" src="web_js/agtab.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+	<link rel="stylesheet" href="web_css/style1.css">
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<body ng-app="agtab">
+		<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+			<div class="container">
+				<img class="logo" ng-src="{{pcnavs.src0}}" />
+				<ul class="pcnav clearfix">
+					<li ng-repeat="pcnav in pcnavs.pcnavbox">
+						<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+					</li>
+					<li>
+						<a href=""><img ng-src="{{pcnavs.src}}"></a>
+					</li>
+				</ul>
+				<p ng-class="{{loginClass}}"  id="loginInfo">
+					<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+					<p class="signin" ng-if="loginFagle==true">
+						<span>
+							<a href=""><img src="{{headPicUrl}}"></a>
+							<i>{{playerMoney}}币</i>
+							<em>|</em>
+							<a href="" ng-click="quitOut()">退出</a>
+						</span>
+					</p>
+				</p>
+			</div>
+			<!--登录-->
+			<div class="theme-popover">
+			    <div class="theme-poptit">
+			        <a href="javascript:;" title="关闭" class="close"  ng-click="thempClose()">×</a>
+			        <h3>请用微信账号扫描</h3>
+			    </div>
+			    <div class="theme-popbod dform">
+					<div id="code"></div>
+			    </div>
+			</div>
+		</div>
+		<div ng-controller="agtabctrl as tabqie">
+			<main class="mtop">
+				<header id="top">
+					<a id="point" class="point">
+						<img ng-src="{{::tabqie.src0}}">
+					</a>
+					<span>{{::tabqie.word}}</span>
+					<a id="pointe" class="pointer">
+						<img ng-src="{{::tabqie.src1}}">
+					</a>
+				</header>
+			</main>
+
+			<a href="#cd-nav" class="cd-nav-trigger">
+				<span class="cd-nav-icon"></span>
+				<svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+					<circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+				</svg>
+			</a>
+
+			<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+				<div class="cd-navigation-wrapper">
+					<div class="cd-half-block">
+						<h2>
+					      	<a class="ce" ng-href="{{::tabqie.url}}">
+					      		<img class="la" ng-src="{{::tabqie.src}}">
+					      	</a>
+					      </h2>
+						<nav>
+							<ul id="close" class="cd-primary-nav">
+								<li ng-repeat="nav in tabqie.navbox">
+									<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{::nav.url}}">{{::nav.text}}</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<article style="margin-top: 0;">
+			<section>
+				<div class="selectdrop col-xs-12 col-sm-12" ng-cloak class="ng-cloak">
+					<div ng-controller="agctrl">
+						<ul id="tab">
+							<li class="pai" ng-click="tabClick('2')" style="{{tabstylea}}">未派奖</li>
+							<li class="pai" ng-click="tabClick('1')" style="{{tabstyleb}}">已派奖</li>
+						</ul>
+						<div id="tab_content">
+							<div class=" col-xs-12 col-sm-12 push" ng-repeat="ctrl in agctrlLists">
+								<ul id="tabgame">
+									<li ng-click="gameClick(ctrl.isclickFree,ctrl.gameID,'1')" ng-class="{ true :'se',false:''} [ctrl.isclickFree]">自由赛</li>
+									<li ng-click="gameClick(ctrl.isclickFree,ctrl.gameID,'2')" ng-class="{ false :'se',true:''} [ctrl.isclickFree]">锦标赛</li>
+								</ul>
+								<div>
+									<div class="col-md-6">
+										<div class="bgcolor  col-xs-12 col-sm-12">
+											<p class="left c">
+												<img ng-src="{{::ctrl.imga}}" />
+												<span>{{::ctrl.team}}</span>
+											</p>
+											<p class="left cd">
+												<em class="left">{{::ctrl.score}}</em>
+												<span>vs</span>
+												<em class="right">{{::ctrl.scores}}</em>
+											</p>
+											<p class="right d">
+												<img ng-src="{{::ctrl.imgb}}" />
+												<span>{{::ctrl.teams}}</span>
+											</p>
+										</div>
+										<div>
+											<div class=" col-xs-12 col-sm-12 style" ng-show="ctrl.isclickFree==true">
+												<ul>
+													<li>
+														<span class="left">{{::ctrl.title}}<i>{{::ctrl.content}}</i></span>
+														<span class="red right">{{::ctrl.title1}}<i>{{::ctrl.content1}}</i></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title2}}<i>{{::ctrl.content2}}</i></span>
+													</li>
+													<li class="already">
+														<span>已经有<i class="red" style="font-size:22px;">{{::ctrl.content3}}</i>人参与游戏</span>
+														<span><button style="height:40px;line-height:40px;width:30%;margin:5px 10%;color:#fff; border:none;border-radius:5px;background:#DC143C;" ng-click="toNewsDetail(ctrl.match_code)">SI资讯</button></span>
+													</li>
+													<!--<li>
+													<span>{{::ctrl.title3}}<i>{{::ctrl.content4}}</i></span>
+												</li>-->
+													<li class="last" ng-if="ctrl.buttonFree=='0'">
+														<a href=""><button class='button_gray'>比赛停售</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='1'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_gray'>已派奖</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='2'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_gray'>已取消</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='3'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,ctrl.freeJoinState,ctrl.freegp_id)" class='button_green'>去投注</button></a>
+													</li>
+													<li class="last" ng-if="ctrl.buttonFree=='4'">
+														<a href=""><button ng-click="toGame(ctrl.gameID,1,998,ctrl.freegp_id)" class='button_sign'>去投注</button></a>
+													</li>
+												</ul>
+											</div>
+
+											<div class=" col-xs-12 col-sm-12 style" ng-show="ctrl.isclickFree==false">
+												<ul>
+													<li>
+														<span class="left">{{::ctrl.title}}<i>{{::ctrl.contenter}}</i></span>
+														<span class="red right">{{::ctrl.title1}}<i>{{::ctrl.contenter1}}</i></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title5}}<i>{{::ctrl.contenter2}}</i></span>
+														<!--<a ng-href="{{::ctrl.list}}"><button class="watch right">{{::ctrl.text}}</button></a>-->
+													</li>
+													<li class="already">
+														<span>已经有<i class="red" style="font-size:22px;">{{::ctrl.contenter3}}</i>人报名</span>
+														<span><button style="height:40px;line-height:40px;width:30%;margin:5px 10%;color:#fff; border:none;border-radius:5px;background:#DC143C;" ng-click="toNewsDetail(ctrl.match_code)">SI资讯</button></span>
+													</li>
+													<li>
+														<span>{{::ctrl.title3}}<i>{{::ctrl.contenter4}}</i></span>
+														<span class="yellow right">{{::ctrl.text1}}<i>{{::ctrl.contenter5}}</i></span>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='0'">
+														<button class='button_gray'>比赛停售</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='1'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_gray'>已派奖</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='2'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_gray'>已取消</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='3'">
+														<button ng-click="toGame(ctrl.gameID,2,ctrl.championJoinState,ctrl.gpgame_id)" class='button_green'>已报名</button>
+													</li>
+													<li class="last" ng-if="ctrl.buttonJoin=='4'">
+														<button class="button Bombbox" ng-click="toGame(ctrl.gameID,2,998,ctrl.gpgame_id)">{{::ctrl.baoming}}</button>
+													</li>
+													<input type="hidden" id="gameIDBombbox"></input> <input type="hidden" id="gameIDgameType"></input>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- 报名 -->
+									<div id="page-wrap" ng-controller="baoctrl as baom">
+										<div id="content-wrap">
+											<div id="content-left" class="demo">
+												<div class="overlay" id="overlay1" style="display:none;"></div>
+												<div class="box1" id="box1" style="text-align:center;">
+													<a class="boxclose1" ng-click="boxclose1()"></a>
+													<p class="imgbg"><img ng-src="{{::baom.src1}}"></p>
+													<p class="ni">{{::baom.jin}}</p>
+													<p class="signbutton1">
+														<a><button ng-click="toGames()">{{::baom.bao}}</button></a>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+
+	</body>
+
+</html>

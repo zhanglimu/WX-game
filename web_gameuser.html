@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>彩ex</title>
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+		<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+		<!-- Start of KF5 supportbox script -->
+		<script type="text/javascript">
+			document.write('<script src="\/\/assets-cdn.kf5.com\/supportbox\/main.js?' + (new Date).getDay() + '" id="kf5-provide-supportBox" kf5-domain="caiexex.kf5.com" charset="utf-8"><\/script>');
+		</script>
+		<!-- End of KF5 supportbox script -->
+	</head>
+	<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="web_js/webgame.js"></script>
+	<script type="text/javascript" src="web_js/angular.min.js"></script>
+	<script type="text/javascript" src="web_js/aguser.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+	<link rel="stylesheet" href="web_css/style1.css">
+	<script src="web_js/mobiscroll.2.13.2.min.js"></script><!--日历-->
+    <link href="web_css/mobiscroll.2.13.2.css" rel="stylesheet" /><!--日历-->
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+
+	<body ng-app="aguser">
+	<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+		<div class="container">
+			<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+			<ul class="pcnav clearfix">
+				<li ng-repeat="pcnav in pcnavs.pcnavbox">
+		          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+		        </li>
+				<li><a ng-href="{{pcnavs.Sihref}}"><img ng-src="{{pcnavs.src}}"></a></li>
+			</ul>
+			<p ng-class="{{loginClass}}"  id="loginInfo">
+				<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+				<p class="signin" ng-if="loginFagle==true">
+					<span>
+						<a href=""><img ng-src="{{headPicUrl}}"></a>
+						<i>{{playerMoney}}币</i>
+						<em>|</em>
+						<a href="" ng-click="quitOut()">退出</a>
+					</span>
+				</p>
+			</p>
+		</div>
+		<!--登录-->
+	<div class="theme-popover">
+	    <div class="theme-poptit">
+	        <a href="javascript:;" title="关闭" class="close"  ng-click="thempClose()">×</a>
+	        <h3>请用微信账号扫描</h3>
+	    </div>
+	    <div class="theme-popbod dform">
+			<div id="code"></div>
+	    </div>
+	</div>
+	</div>
+		<div ng-controller="aguserctrl as usery" ng-cloak class="ng-cloak">
+			<main class="mtop">
+				<header id="top">
+					<a id="point" class="point">
+						<img ng-src="{{usery.src0}}">
+					</a>
+					<span>{{usery.word}}</span>
+					<a id="pointe" class="pointer">
+						<img class="dateimg" name="demo3" ng-src="{{usery.src1}}">
+						<!--<span class="date"></span>-->
+					</a>
+				</header>
+			</main>
+
+			<a href="#cd-nav" class="cd-nav-trigger">
+				<span class="cd-nav-icon"></span>
+				<svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+					<circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+				</svg>
+			</a>
+
+			<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+				<div class="cd-navigation-wrapper">
+					<div class="cd-half-block">
+						<h2>
+					      	<a class="ce" ng-href="{{usery.url}}">
+					      		<img class="la" ng-src="{{usery.src}}">
+					      	</a>
+					    </h2>
+						<nav>
+							<ul id="close" class="cd-primary-nav">
+								<li ng-repeat="nav in usery.navbox">
+									<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+								</li>
+								<li class="qiandao">
+									<span>签到</span><br />
+									<span>{{userMoney}}</span>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<article>
+			<section>
+				<div class="couser col-xs-12 col-sm-12" ng-controller="touctrl as head" ng-cloak class="ng-cloak">
+					<P><img class="du" ng-src="{{head.hai}}"></P>
+					<span class="du1"><img ng-src="{{head.jinbi}}"><br><em>{{head.mon}}</em></span>
+					<span class="du2">{{head.hu}}<br><em>{{head.ci}}</em></span>
+					<marquee class="du3">{{head.auto}}<b>{{head.auto0}}</b></marquee>
+				</div>
+
+				<div class="selectdrop col-xs-12 col-sm-12">
+					<div>
+						<ul id="tabTime" ng-controller="userrctrl as userr" ng-cloak class="ng-cloak">
+							<li id="ztLi" ng-click="dayclickzuo()" style="{{tabstylea}}">{{userr.zuo}}</li>
+							<li id="jtLi" ng-click="dayclickjin()" style="{{tabstyleb}}">{{jin}}</li>
+							<li id="mtLi" ng-click="dayclickming()" style="{{tabstylec}}">{{userr.ming}}</li>
+						</ul> 
+						<div id="tabTime_content">
+							<div ng-controller="zuoctrl" ng-cloak class="ng-cloak" id="zuoctrl">
+							<div class="col-md-6 col-xs-12 col-sm-12 push" ng-repeat=" zuo in userrctrls" ng-show="zjmType=='zt'">
+									<div class="team col-xs-12 col-sm-12" ng-click="togameHTML(zuo.isclickGame,zuo.game_id,zuo.gpFree_id,zuo.gpGame_id)">
+										<div class="teamdiv clearfix">
+											<p class="team_img left">
+												<img ng-src="{{zuo.src}}"><br />
+												<span>{{zuo.text}}</span>
+											</p>
+											<p class="team_time left">
+												<!--<span class="fontbold">vs</span><br />-->
+												<span class="font_color">{{zuo.wor}}</span>
+												<span class="font">{{zuo.word}}</span>
+												<span>{{zuo.wod}}</span>
+											</p>
+											<p class="team_img right">
+												<img ng-src="{{zuo.src1}}"><br />
+												<span>{{zuo.text1}}</span>
+											</p>
+										</div>
+										<div class="timeevenbox">
+											<div class="timemovebox">
+												<div class="timemove"></div>
+												<div class="timenodebox">
+													<div class="timenode">
+														<span class="timenodein">
+                                                        <img class="littlein" ng-src="{{zuo.url}}">
+                                                    </span>
+													</div>
+													<div class="timenode">
+														<span class="timenodezhu" ng-repeat="point in zuo.pointer">
+										                <img style={{point.perPic}} ng-src="{{point.src}}" title="{{point.tit}}">
+										                <img style={{point.per}} ng-src="{{point.src1}}">
+										            </span>
+														<span class="timenodeke" ng-repeat="poin in zuo.poiner">
+										                <img style={{poin.perPic}} ng-src="{{poin.src}}" title="{{poin.tit}}">
+										                <img style={{poin.per}} ng-src="{{poin.src1}}">
+										            </span>
+													</div>
+												</div>
+											</div>
+											<span class="count0">{{zuo.ling}}</span>
+											<span class="count90">{{zuo.jiu}}</span>
+										</div>
+										<div>
+											<span ng-repeat="ex in zuo.explain"><img ng-src="{{ex.src}}">&nbsp<span>{{ex.color}}</span>&nbsp&nbsp</span>
+										</div>
+									</div>
+									<div class="selectdrop2 col-xs-12 col-sm-12">
+										<div>
+											<ul id="tab">
+												<li ng-class="{ true :'se',false:''} [zuo.isclickGame]" ng-click="gameFree(1,zuo.game_id)">自由赛</li>
+												<li ng-class="{ true :'',false:'se'} [zuo.isclickGame]" ng-click="gameFree(2,zuo.game_id)">锦标赛</li>
+											</ul>
+											<div id="tab_content">
+												<div ng-show="zuo.type == true">
+													<table class="table" border="1">
+														<tbody id="{{zuo.game_id}}">
+
+														</tbody>
+													</table>
+												</div>
+												<div ng-show="zuo.type == false">
+													<table class="table" border="1">
+														<tbody id="{{zuo.game_id+'s'}}">
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="jogger" id="{{zuo.game_id+'page'}}">
+
+											</div>
+											<div align="center"><button type="button" class="togame" ng-click="togameHTML(zuo.isclickGame,zuo.game_id,zuo.gpFree_id,zuo.gpGame_id)">进入比赛</button></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div ng-controller="jinctrl" ng-cloak class="ng-cloak">
+								<div class="col-md-6 col-xs-12 col-sm-12 push" ng-repeat=" jin in jinctrls" ng-show="zjmType=='jt'">
+									<div class="team col-xs-12 col-sm-12" ng-click="togameHTML(jin.isclickGame,jin.game_id,jin.gpFree_id,jin.gpGame_id)">
+										<div class="teamdiv clearfix">
+											<p class="team_img left">
+												<img ng-src="{{jin.src1}}"><br />
+												<span>{{jin.tex1}}</span>
+											</p>
+											<p class="team_time left">
+												<!--<span class="fontbold">vs</span>-->
+												<span class="font_color">{{jin.wor1}}</span>
+												<span class="font">{{jin.word1}}</span>
+												<span>{{jin.wod1}}</span>
+											</p>
+											<p class="team_img right">
+												<img ng-src="{{jin.src11}}"><br />
+												<span>{{jin.text11}}</span>
+											</p>
+										</div>
+										<div class="timeevenbox">
+											<div class="timemovebox">
+												<div class="timemove"></div>
+												<div class="timenodebox">
+													<div class="timenode">
+														<span class="timenodein">
+                                                        <img class="littlein" ng-src="{{jin.url1}}">
+                                                    </span>
+													</div>
+													<div class="timenode">
+														<span class="timenodezhu" ng-repeat="point in jin.pointer">
+										                 <img style={{point.perPic}} ng-src="{{point.src}}" title="{{point.tit}}">
+										                <img style={{point.per}} ng-src="{{point.src1}}">
+										            </span>
+														<span class="timenodeke" ng-repeat="poin in jin.poiner">
+										                <img style={{poin.perPic}} ng-src="{{poin.src}}" title="{{poin.tit}}">
+										                <img style={{poin.per}} ng-src="{{poin.src1}}">
+										            </span>
+													</div>
+												</div>
+											</div>
+											<span class="count0">{{jin.ling1}}</span>
+											<span class="count90">{{jin.jiu1}}</span>
+										</div>
+										<div>
+											<span ng-repeat="ex in jin.explain"><img ng-src="{{ex.src}}">&nbsp<span>{{ex.color}}</span>&nbsp&nbsp</span>
+										</div>
+									</div>
+									<div class="selectdrop2 col-xs-12 col-sm-12">
+										<div>
+											<ul id="tab1">
+												<li ng-class="{ true :'se',false:''} [jin.isclickGame]" ng-click="gameFree(1,jin.game_id)">自由赛</li>
+												<li ng-class="{ true :'',false:'se'} [jin.isclickGame]" ng-click="gameFree(2,jin.game_id)">锦标赛</li>
+											</ul>
+											<div id="tab1_content">
+												<div ng-if="jin.type == true">
+													<table class="table" border="1">
+														<tbody id="{{jin.game_id}}">
+
+														</tbody>
+													</table>
+												</div>
+												<div ng-if="jin.type == false">
+													<table class="table" border="1">
+														<tbody id="{{jin.game_id+'s'}}">
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="jogger" id="{{jin.game_id+'page'}}">
+
+											</div>
+											<div align="center"><button type="button" class="togame" ng-click="togameHTML(jin.isclickGame,jin.game_id,jin.gpFree_id,jin.gpGame_id)">进入比赛</button></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div ng-controller="mingctrl" ng-cloak class="ng-cloak" id="mingctrl">
+								<div class="col-md-6 col-xs-12 col-sm-12 push" ng-repeat=" ming in mingctrls" ng-show="zjmType=='mt'">
+									<div class="team col-xs-12 col-sm-12" ng-click="togameHTML(ming.isclickGame,ming.game_id,ming.gpFree_id,ming.gpGame_id)">
+										<div class="teamdiv clearfix">
+											<p class="team_img left">
+												<img ng-src="{{ming.src2}}"><br />
+												<span>{{ming.text2}}</span>
+											</p>
+											<p class="team_time left">
+												<!--<span class="fontbold">vs</span>-->
+												<span class="font_color">{{ming.wor2}}</span>
+												<span class="font">{{ming.word2}}</span>
+												<span>{{ming.wod2}}</span>
+											</p>
+											<p class="team_img right">
+												<img ng-src="{{ming.src12}}"><br />
+												<span>{{ming.text12}}</span>
+											</p>
+										</div>
+										<div class="timeevenbox">
+											<div class="timemovebox">
+												<div class="timemove"></div>
+												<div class="timenodebox">
+													<div class="timenode">
+														<span class="timenodein">
+                                                        <img class="littlein" ng-src="{{ming.url2}}">
+                                                    </span>
+													</div>
+													<div class="timenode">
+														<span class="timenodezhu" ng-repeat="point in ming.pointer">
+										                 <img style={{point.perPic}} ng-src="{{point.src}}" title="{{point.tit}}">
+										                <img style={{point.per}} ng-src="{{point.src1}}">
+										            </span>
+														<span class="timenodeke" ng-repeat="poin in ming.poiner">
+										              <img style={{poin.perPic}} ng-src="{{poin.src}}" title="{{poin.tit}}">
+										                <img style={{poin.per}} ng-src="{{poin.src1}}">
+										            </span>
+													</div>
+												</div>
+											</div>
+											<span class="count0">{{ming.ling2}}</span>
+											<span class="count90">{{ming.jiu2}}</span>
+										</div>
+										<div>
+											<span ng-repeat="ex in ming.explain"><img ng-src="{{ex.src}}">&nbsp<span>{{ex.color}}</span>&nbsp&nbsp</span>
+										</div>
+									</div>
+									<div class="selectdrop2 col-xs-12 col-sm-12">
+										<div>
+											<ul id="tab2">
+												<li ng-class="{ true :'se',false:''} [ming.isclickGame]" ng-click="gameFree(1,ming.game_id)">自由赛</li>
+												<li ng-class="{ true :'',false:'se'} [ming.isclickGame]" ng-click="gameFree(2,ming.game_id)">锦标赛</li>
+											</ul>
+											<div id="tab2_content">
+												<div ng-show="ming.type == true">
+													<table class="table" border="1">
+														<tbody id="{{ming.game_id}}">
+
+														</tbody>
+													</table>
+												</div>
+												<div ng-show="ming.type == false">
+													<table class="table" border="1">
+														<tbody id="{{ming.game_id+'s'}}">
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="jogger" id="{{ming.game_id+'page'}}">
+
+											</div>
+											<div align="center"><button type="button" class="togame" ng-click="togameHTML(ming.isclickGame,ming.game_id,ming.gpFree_id,ming.gpGame_id)">进入比赛</button></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+	</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>彩ex</title>
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--百度禁止转码-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="canonical" href="#"/><!-- 添上链接/有助于防止出现内容重复的问题 -->
+		<link rel="shortcut icon" type="image/x-icon" href="web_img/biticon.ico" media="screen"/>
+		<!-- Start of KF5 supportbox script -->
+		<script type="text/javascript">
+			document.write('<script src="\/\/assets-cdn.kf5.com\/supportbox\/main.js?' + (new Date).getDay() + '" id="kf5-provide-supportBox" kf5-domain="caiexex.kf5.com" charset="utf-8"><\/script>');
+		</script>
+		<!-- End of KF5 supportbox script -->
+	</head>
+	<script type="text/javascript" src="web_js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="web_js/webgame.js"></script>
+	<script type="text/javascript" src="web_js/angular.min.js"></script>
+	<script type="text/javascript" src="web_js/agSI.js"></script>
+	<link rel="stylesheet" type="text/css" href="web_css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="web_css/web_game.css">
+	<link rel="stylesheet" type="text/css" href="web_css/style1.css"/>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+
+	<body ng-app="agSI">
+	<div class="bei" ng-controller="agpcnavctrl as pcnavs">
+		<div class="container">
+			<img class="logo" ng-src="{{pcnavs.src0}}" /> 
+			<ul class="pcnav clearfix">
+				<li ng-repeat="pcnav in pcnavs.pcnavbox">
+		          	<a ng-class="{selected:pcnav.selected}" ng-click="pcnav.selected = !pcnav.selected" ng-href="{{pcnav.url}}">{{pcnav.text}}</a>
+		        </li>
+				<li><a href=""><img ng-src="{{pcnavs.src}}"></a></li>
+			</ul>
+			<p ng-class="{{loginClass}}"  id="loginInfo">
+				<span class="signin" style="width: 14%; float: right; padding: 20px 0; display: flex;" ng-if="loginFagle==false"><a href="" id="loginHref" ng-click="loginMethod()">登录</a><em>|</em><a href="" ng-click="quitOut()">退出</a></span>
+				<p class="signin" ng-if="loginFagle==true">
+					<span>
+						<a href=""><img ng-src="{{headPicUrl}}"></a>
+						<i>{{playerMoney}}币</i>
+						<em>|</em>
+						<a href="" ng-click="quitOut()">退出</a>
+					</span>
+				</p>
+			</p>
+		</div>
+		<!--登录-->
+	<div class="theme-popover">
+	    <div class="theme-poptit">
+	        <a href="javascript:;" title="关闭" class="close"  ng-click="thempClose()">×</a>
+	        <h3>请用微信账号扫描</h3>
+	    </div>
+	    <div class="theme-popbod dform">
+			<div id="code"></div>
+	    </div>
+	</div>
+	</div>
+		<div ng-controller="agSIingctrl as SIy" ng-cloak class="ng-cloak">
+			<main class="mtop">
+				<header id="top">
+					<a id="point" class="point">
+						<img ng-src="{{SIy.src0}}">
+					</a>
+					<span>{{SIy.word}}</span>
+					<a id="pointe" class="pointer">
+						<img class="dateimg" name="demo3" ng-src="{{SIy.src1}}">
+						<!--<span class="date"></span>-->
+					</a>
+				</header>
+			</main>
+
+			<a href="#cd-nav" class="cd-nav-trigger">
+				<span class="cd-nav-icon"></span>
+				<svg x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+					<circle fill="transparent" stroke="#fff" stroke-width="1" cx="21" cy="21" r="19" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+				</svg>
+			</a>
+
+			<div id="cd-nav" class="cd-nav" ng-cloak class="ng-cloak">
+				<div class="cd-navigation-wrapper">
+					<div class="cd-half-block">
+						<h2>
+					      	<a class="ce" ng-href="{{SIy.url}}">
+					      		<img class="la" ng-src="{{SIy.src}}">
+					      	</a>
+					    </h2>
+						<nav>
+							<ul id="close" class="cd-primary-nav">
+								<li ng-repeat="nav in SIy.navbox">
+									<a ng-class="{selected:nav.selected}" ng-click="nav.selected = !nav.selected" ng-href="{{nav.url}}">{{nav.text}}</a>
+								</li>
+								<li class="qiandao">
+									<span>签到</span><br />
+									<span>{{userMoney}}</span>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+    <article class="container" ng-controller="agSIctrl as SIing">
+        <section>
+        	<div id="partner_box">
+        		<ul>
+        			<li class="SI"><img src="web_img/SI.png"/></li>
+        			<li>快人一步</li>
+        			<li>Soccerinternationl 是一家提供全世界范围的足球比赛前瞻，往期比赛的回顾，各种维度的数据统计和分析的专业足球情报机构，一站式的足球比赛伤病和分析系统。</li>
+        			<li class="SI"><img src="web_img/SI_1.png"/></li>
+        			<li>关于 Soccerinternationl</li>
+        			<li>足球世界是一家位于英国，雇员遍布欧洲，亚洲和美洲的国际公司。从1999年开始， 公司就致力于给用户提供第一手的足球新闻情报和分析。</li>
+        			<li>在全球市场上，在线博彩和专业彩民对于准确快速的足球信息和情报要求越来越大，足球世界公司应运而生，之后，我们便根据客户的要求，覆盖越来越多的足球联赛，大到世界上最著名的五大联赛，小至荷兰乙级联赛，法国乙级联赛，乃至最近新加入的巴西甲级联赛，俄罗斯超级联赛等。</li>
+        			<li>多亏了我们整个编辑团队的努力，撰写出一场场高质量，高准确性，简单易读的足球情报，让我们的服务客户遍布于体育博彩公司，专业投资基金，和职业博彩人等，当然，我们的情报系统也服务于线上和线下的媒体。</li>
+        			<li class="SI"><img src="web_img/SI_2.png"/></li>
+        			<li>我们的产品</li>
+        			<li>我们提供世界范围内众多的足球联赛情报信息服务。我们的编辑团队都是这方面的专家，他们接受专业的培训，全职的投入于足球情报的搜集和深度分析，从英国本土，到欧洲大陆，从亚洲到美洲，我们专注于那些非常难以获得的足球信息，让用户便利的得到汇总和分析，省时省力。</li>
+        			<li>我们提供所有和你购买的联赛相关的信息和赛后报告，用户可以随时在线上查看或者推送到邮箱。</li>
+        			<li>信息提醒系统可以及时提醒用户有最新的信息发生，第一时间通知用户。</li>
+        		</ul>
+        		<!--<ul ng-repeat="into in SIing.SIone">
+        			<li class="SI"><img ng-src="{{into.SIurl}}"/></li>
+        			<li>{{into.title}}</li>
+        			<li>{{into.text}}</li>
+        			<li>{{into.edit}}</li>
+        			<li>{{into.word}}</li>
+        		</ul>-->
+        	</div>
+        </section>
+    </article>
+</body>
+</html>
+

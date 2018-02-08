@@ -1,0 +1,69 @@
+<ion-view title="{{newDate}}">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+
+	<ion-tabs class="tabs-assertive tabs-icon-only">
+
+		<ion-tab title="Home" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" class="has-header">
+			<ion-content>
+				<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+				<ion-list>
+					<div class="content has-header" ng-repeat="playlist in playlists" ng-if="type==true">
+
+						<div class="row">
+							<div class="col col-40 balanced-bg">
+								<div class="col-demo">{{playlist.title}}</div>
+							</div>
+							<div class="col calm-bg">
+								<div class="col-demo"   style="white-space:nowrap {{playlist.font}}">{{playlist.time1}}</div>
+								<div class="col-demo"   style="white-space:nowrap {{playlist.font}}">{{playlist.time2}}</div>
+								<div class="col-demo"   style="white-space:nowrap {{playlist.font}}">{{playlist.time3}}</div>
+								<div class="col-demo"   style="white-space:nowrap {{playlist.font}}">{{playlist.time4}}</div>
+							</div>
+							<div class="col calm-bg">
+								<div class="col-demo" style="white-space:nowrap;font-size:12px {{playlist.font}}">{{playlist.score1}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px {{playlist.font}}">{{playlist.score2}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px {{playlist.font}}">{{playlist.score3}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px {{playlist.font}}">{{playlist.score4}}</div>
+							</div>
+							<div class="col calm-bg">
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.H1}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.H2}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.H3}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.H4}}</div>
+								
+								
+								
+							</div>
+							<div class="col calm-bg">
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.line1}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.line2}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.line3}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.line4}}</div>
+								
+								
+							</div>
+							<div class="col calm-bg">
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.A1}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.A2}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.A3}}</div>
+								<div class="col-demo" style="white-space:nowrap;font-size:12px">{{playlist.A4}}</div>
+							
+								
+								
+							</div>
+						</div>
+					</div>
+					<div class="content has-header" ng-if="type==false">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="type.png">
+					</div>
+
+				</ion-list>
+
+			</ion-content>
+		</ion-tab>
+
+	</ion-tabs>
+
+</ion-view>
